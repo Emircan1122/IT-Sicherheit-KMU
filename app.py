@@ -67,6 +67,45 @@ def malwarebasiert():
 def bekoid():
     return render_template('bekoid.html')
 
+
+@app.route('/schnelltest', methods=['GET', 'POST'])
+def schnelltest():
+    test_type = 'schnell'
+    session['test_type'] = test_type
+    form = SchnellCheckForm()  # ← Neue Formklasse für IT-Sicherheit verwenden
+
+    if form.validate_on_submit():
+        session['form_data'] = {field.name: field.data for field in form}
+
+        app.logger.debug(f'Form data Schnelltest: {session["form_data"]} Test Type: {test_type} -----------------------------------')
+
+        calculator = CalculateResult(test_type, session['form_data'])
+        ampelfarbe, punkte = calculator.calcResults()
+        session['ampelfarbe'] = ampelfarbe
+
+        app.logger.debug(f'Ampelfarbe result: {ampelfarbe}, session ampelfarbe: {session["ampelfarbe"]}, Punkte: {punkte} ------------------------------------------')
+
+        user_answers = {
+            'Werden Ihre Unternehmensdaten regelmäßig gesichert und offline vorgehalten?': form.backup.data,
+            'Finden in Ihrem Unternehmen regelmäßige IT-Sicherheits-Schulungen für Mitarbeitende statt?': form.it_schulung.data,
+            'Setzen Sie auf starke Passwörter und nutzen Sie Mehrfaktor-Authentifizierung für wichtige Accounts?': form.passwort_mfa.data,
+            'Haben Sie eine Firewall im Einsatz und sind externe Zugänge (z.B. Remote Desktop) abgesichert?': form.firewall.data,
+            'Wie zeitnah installieren Sie Software-Updates/Sicherheits-Patches?': form.updates.data,
+            'Existiert ein IT-Notfallplan (Incident Response) und wissen Mitarbeiter, was im Ernstfall zu tun ist?': form.notfallplan.data,
+            'Hosten Sie öffentliche Web-Dienste, und ist ggf. DDoS-Schutz vorhanden?': form.ddos.data,
+            'Besitzen Sie eine Cyber-Versicherung, die Restschäden abdeckt?': form.cyberversicherung.data,
+            'Sind Zugriffsrechte in Ihrem Netzwerk nach dem Need-to-know-Prinzip eingeschränkt?': form.zugriffsrechte.data,
+            'Nutzen Sie professionelle Cloud-/Hosting-Dienste mit Sicherheitszertifizierungen?': form.cloud_dienste.data
+        }
+
+        eingaben = [{'question': frage, 'user_answer': antwort} for frage, antwort in user_answers.items()]
+        session['form_eingaben'] = eingaben
+
+        return redirect(url_for('result'))
+
+    return render_template('schnelltest.html', form=form, test_type = session['test_type'])
+
+
 @app.route('/quizweb', methods=['GET', 'POST'])
 def quizweb():
     test_type = 'web'
@@ -357,7 +396,7 @@ def ausführlicherTest():
     else: 
         return render_template('ausführlicherTest.html', form=form, current_step=current_step, total_steps=5)
 
- 
+
 @app.route("/result")
 def result():  
     filename = request.args.get('filename')
@@ -365,8 +404,10 @@ def result():
  
     if not form_eingaben: 
         return "Fehler: daten nicht gefunden."
+    
 
-    return render_template("result.html", filename=filename, form_eingaben = form_eingaben, ampelfarbe = session['ampelfarbe'])
+    else:
+        return render_template("result.html", filename=filename, form_eingaben = form_eingaben, ampelfarbe = session['ampelfarbe'], note = session['note'])
 
 @app.route("/download/<filename>")     
 def download_pdf(filename):

@@ -130,6 +130,19 @@ class CalculateResult:
                 (self.form_data.get('bekoid9'), ["ja"], 4),
                 (self.form_data.get('bekoid10'), ["ja"], 4),
             ]
+        if self.test_type == "schnell":
+            self.bewertungskriterien = [
+                (self.form_data.get('backup'), ["ja"], 10),
+                (self.form_data.get('it_schulung'), ["ja"], 8),
+                (self.form_data.get('passwort_mfa'), ["ja"], 10),
+                (self.form_data.get('firewall'), ["ja"], 10),
+                (self.form_data.get('updates'), ["zeitnah"], 9),
+                (self.form_data.get('notfallplan'), ["ja"], 7),
+                (self.form_data.get('ddos'), ["ja", "nicht_zutreffend"], 4),
+                (self.form_data.get('cyberversicherung'), ["ja"], 3),
+                (self.form_data.get('zugriffsrechte'), ["ja"], 6),
+                (self.form_data.get('cloud_dienste'), ["ja"], 3),
+            ]
         else:
             #für den AusführlichenCheck
             #132
@@ -253,20 +266,61 @@ class CalculateResult:
         
         logger.debug(f'Total points calculated: {pos_answers}')
 
-        if self.test_type == "Schnell" or "web":
+        if self.test_type == "web":
             if pos_answers < 42:   
                 ampelfarbe = "rot"
             elif pos_answers < 52:
                 ampelfarbe = "gelb"
             else:
                 ampelfarbe = "grün"
+        elif self.test_type == 'schnell':
+            if pos_answers >= 60:
+                ampelfarbe = 'A'
+            elif pos_answers >= 50:
+                ampelfarbe = 'B'
+            elif pos_answers >= 40:
+                ampelfarbe = 'C'
+            elif pos_answers >= 30:
+                ampelfarbe = 'D'
+            elif pos_answers >= 20:
+                ampelfarbe = 'E'
+            else:
+                ampelfarbe = 'F'
+        
         else:  # AusführlicherTest
             if pos_answers < 107:    
                 ampelfarbe = "rot"
             elif pos_answers <= 119:
                 ampelfarbe = "gelb"
             else:
-                ampelfarbe = "grün"
+                ampelfarbe = "grün"            
 
         return ampelfarbe, pos_answers
         
+        
+
+    def calcResultsAtoF(self):
+            pos_answers = sum(
+                punkte 
+                for wert, gültige_werte, punkte in self.bewertungskriterien 
+                if wert in gültige_werte
+            )
+            
+            logger.debug(f'Total points calculated: {pos_answers}')
+
+            if self.test_type == "Schnell" or "web":
+                if pos_answers < 42:   
+                    ampelfarbe = "rot"
+                elif pos_answers < 52:
+                    ampelfarbe = "gelb"
+                else:
+                    ampelfarbe = "grün"
+            else:  # AusführlicherTest
+                if pos_answers < 107:    
+                    ampelfarbe = "rot"
+                elif pos_answers <= 119:
+                    ampelfarbe = "gelb"
+                else:
+                    ampelfarbe = "grün"
+
+            return ampelfarbe, pos_answers
