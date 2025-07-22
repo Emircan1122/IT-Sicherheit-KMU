@@ -59,16 +59,13 @@ class CalculateResult:
             #für den SchnellCheck
             #62
             self.bewertungskriterien = [
-                (self.form_data.get('web1'), ["ja"], 10),
-                (self.form_data.get('web2'), ["ja"], 9),
-                (self.form_data.get('web3'), ["ja"], 7),
-                (self.form_data.get('web4'), ["ja"], 8),
-                (self.form_data.get('web5'), ["ja"], 10),
-                (self.form_data.get('web6'), ["ja"], 6),
-                (self.form_data.get('web7'), ["nein"], 5),
-                (self.form_data.get('web8'), ["ja"], 3),
-                (self.form_data.get('web9'), ["ja"], 4),
-                (self.form_data.get('web10'), ["ja"], 4),
+                (self.form_data.get('web1'), ["Das Einschleusen von manipuliertem SQL-Code über Benutzereingaben"], 10),
+                (self.form_data.get('web2'), ["Cross-Site Scripting (XSS)"], 10),
+                (self.form_data.get('web3'), ["Ihre Systeme sind oft veraltet oder schlecht abgesichert"], 10),
+                (self.form_data.get('web4'), ["Der Angreifer schleust Skripte ein, die im Browser des Nutzers ausgeführt werden"], 10),
+                (self.form_data.get('web5'), ["Dateien außerhalb des vorgesehenen Verzeichnisses auszulesen"], 10),
+                (self.form_data.get('web6'), ["../"], 10),
+                (self.form_data.get('web7'), ["Sie nutzen oft einfache Webtools, die Eingaben nicht ausreichend prüfen"], 10),
             ]
         if self.test_type == "net":
             #für den SchnellCheck
@@ -256,7 +253,6 @@ class CalculateResult:
                 (self.form_data.get('mitarbeiterschulungen'), ['Ja'], 4),
                 (self.form_data.get('mitarbeiterschulungen'), ['Nein'], 0)
             ]
-
     def calcResults(self):
         pos_answers = sum(
             punkte 
@@ -267,9 +263,9 @@ class CalculateResult:
         logger.debug(f'Total points calculated: {pos_answers}')
 
         if self.test_type == "web":
-            if pos_answers < 42:   
+            if pos_answers < 30:   
                 ampelfarbe = "rot"
-            elif pos_answers < 52:
+            elif pos_answers < 50:
                 ampelfarbe = "gelb"
             else:
                 ampelfarbe = "grün"

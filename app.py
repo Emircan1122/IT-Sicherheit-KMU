@@ -120,16 +120,13 @@ def quizweb():
         session['ampelfarbe'] = ampelfarbe
         app.logger.debug(f'Ampelfarbe result: {ampelfarbe}, session ampelfarbe: {session['ampelfarbe']},  Punkte: {punkte} ------------------------------------------')
         user_answers = {
-            'Wie ist Ihr Gastronomiebetrieb strukturiert?': form.web1.data,
-            'Erfüllt Ihr Kassensystem die Anforderungen einer zertifizierten technischen Sicherheitseinrichtung (TSE)?': form.web2.data,
-            'Geben Sie für jede Transaktion einen Beleg aus?': form.web3.data,
-            'Wurde Ihr Kassensystem innerhalb der letzten 12 Monate geprüft oder zertifiziert?': form.web4.data,
-            'Trennen Sie Speisen (7% MwSt.) und Getränke (19% MwSt.) korrekt in Ihrer Buchhaltung?': form.web5.data,
-            'Erfassen Sie alle Einnahmen aus Barzahlungen, Kartenzahlungen und Lieferdiensten vollständig?': form.web6.data,
-            'Reichen Sie Ihre Steuererklärungen immer fristgerecht ein?': form.web7.data,
-            'Haben Sie in den letzten 2 Jahren Umsatzsteuer-Nachforderungen erhalten?': form.web8.data,
-            'Dokumentieren Sie Trinkgelder gemäß den steuerlichen Vorgaben?': form.web9.data,
-            'Werden Ihre Mitarbeitenden regelmäßig zu steuerlichen Vorgaben geschult (z.B. Kassensicherungsverordnung, Trinkgeldregelung)?': form.web10.data,
+            'Was beschreibt eine klassische SQL-Injection (SQLi)?': form.web1.data,
+            'Welche der folgenden Angriffsmethoden zählt NICHT zu den typischen SQL-Injection-Arten?': form.web2.data,
+            'Warum sind kleine und mittlere Unternehmen (KMU) besonders gefährdet durch SQLi-Angriffe?': form.web3.data,
+            'Was passiert bei einem Cross-Site Scripting (XSS)-Angriff?': form.web4.data,
+            'Was ist das Ziel eines Directory Traversal Angriffs?': form.web5.data,
+            'Welche Zeichenfolge wird typischerweise bei einem Directory Traversal Angriff verwendet?': form.web6.data,
+            'Warum sind besonders KMU anfällig für Directory Traversal Angriffe?': form.web7.data,
         }
         eingaben = [] 
         for frage, user_answer in user_answers.items():
@@ -407,7 +404,7 @@ def result():
     
 
     else:
-        return render_template("result.html", filename=filename, form_eingaben = form_eingaben, ampelfarbe = session['ampelfarbe'], note = session['note'])
+        return render_template("result.html", filename=filename, form_eingaben = form_eingaben, ampelfarbe = session['ampelfarbe'])
 
 @app.route("/download/<filename>")     
 def download_pdf(filename):

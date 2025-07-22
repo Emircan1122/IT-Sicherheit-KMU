@@ -63,51 +63,37 @@ class SchnellCheckForm(FlaskForm):
      
 class quizwebanwendungen(FlaskForm): 
      #Frage 1
-     web1 = RadioField('Was beschreibt eine SQL-Injection-Attacke am besten?',
-                         choices=[('web1a', 'Überlastung des Webservers durch massenhafte Anfragen'),
-                                  ('web1b', 'Einschleusen und Ausführen schädlicher SQL-Befehle in ein Web-Formular, um Datenbankinhalte auszulesen oder zu manipulieren.'),
-                                  ('web1c', 'Abfangen von Netzwerkpaketen beim Benutzer.'),
-                                  ('web1d', 'Täuschen des DNS-Systems.'),],
+     web1 = RadioField('Was beschreibt eine klassische SQL-Injection (SQLi)?',
+                         choices=[('Falsch', 'Die Umgehung von Login-Feldern durch JavaScript'),
+                                  ('Richtig', 'Das Einschleusen von manipuliertem SQL-Code über Benutzereingaben'),
+                                  ('Falsch', 'Die Ausnutzung von DNS-Anfragen zur Datenexfiltration')],
                          validators=[DataRequired()])
                          
      #Frage 2
-     web2 = RadioField('Was kann ein Angreifer mit einer erfolgreichen SQL-Injection meist erreichen?',
-                     choices=[('web2a', 'Er kann vertrauliche Daten aus der Datenbank auslesen oder verändern'), ('web2b', 'Er kann den Webserver durch massenhaftes Anfragen lahmlegen.'), ('web2c', 'Er verschickt Werbe-E-Mails an alle Kunden.'), ('web2d', 'Er ersetzt die Webseite durch eine neue.')],
+     web2 = RadioField('Welche der folgenden Angriffsmethoden zählt NICHT zu den typischen SQL-Injection-Arten?',
+                     choices=[('Falsch', 'Authentication Bypass'), ('Richtig', 'Cross-Site Scripting (XSS)'), ('Falsch', 'Blind SQLi')],
                      validators=[DataRequired()])
      
      #Frage 3
-     web3 = RadioField('Was ist Cross-Site-Scripting (XSS)?',
-                       choices=[('web3a', 'Das Aufspüren von Viren in Skriptdateien.'), ('web3b', 'Ein Angriff, bei dem Angreifer bösartigen Skriptcode in eine ansonsten harmlose Webseite einschleusen, der im Browser anderer Nutzer ausgeführt wird.'), ('web3c', 'Eine Technik, um den Quellcode einer Webseite zu verschlüsseln.'), ('web3d', 'Eine Technik, um den Quellcode einer Webseite zu verschlüsseln.')],
+     web3 = RadioField('Warum sind kleine und mittlere Unternehmen (KMU) besonders gefährdet durch SQLi-Angriffe?',
+                       choices=[('Falsch', 'Sie setzen verstärkt auf künstliche Intelligenz'), ('Richtig', 'Ihre Systeme sind oft veraltet oder schlecht abgesichert'), ('Falsch', 'Sie entwickeln keine eigenen Webanwendungen')],
                        validators=[DataRequired()])
      #Frage 4
-     web4 = RadioField('frage?',
-                          choices=[('web4a', 'Ja'), ('web4b', 'Nein'), ('web4c', 'Nein'), ('web4d', 'Nein')],
+     web4 = RadioField('Was passiert bei einem Cross-Site Scripting (XSS)-Angriff?',
+                          choices=[('Falsch', 'Schadcode wird direkt auf dem Server des Angreifers ausgeführt'), ('Richtig', 'Der Angreifer schleust Skripte ein, die im Browser des Nutzers ausgeführt werden'), ('Falsch', 'Die Datenbank wird durch schadhafte SQL-Befehle manipuliert')],
                           validators=[DataRequired()])
      #Frage 5
-     web5 = RadioField('Trennen Sie Speisen (7% MwSt.) und Getränke (19% MwSt.) korrekt in Ihrer Buchhaltung?',
-                          choices=[('web5a', 'Ja'), ('web5b', 'Nein'), ('web5c', 'Nein'), ('web5d', 'Nein')],
+     web5 = RadioField('Was ist das Ziel eines Directory Traversal Angriffs?',
+                          choices=[('Falsch', 'Schadsoftware im Arbeitsspeicher zu injizieren'), ('Richtig', 'Dateien außerhalb des vorgesehenen Verzeichnisses auszulesen'), ('Falsch', 'Den Benutzer zur Eingabe von Passwörtern zu verleiten')],
                           validators=[DataRequired()])
      #Frage 6
-     web6 = RadioField('Erfassen Sie alle Einnahmen aus Barzahlungen, Kartenzahlungen und Lieferdiensten vollständig?',
-                           choices=[('web6a', 'Ja'), ('web6b', 'Nein'), ('web6c', 'Nein'), ('web6d', 'Nein')],
+     web6 = RadioField('Welche Zeichenfolge wird typischerweise bei einem Directory Traversal Angriff verwendet?',
+                           choices=[('Falsch', '--DROP'), ('Falsch', '<script>'), ('Richtig', '../')],
                            validators=[DataRequired()])
      #Frage 7
-     web7 = RadioField('Reichen Sie Ihre Steuererklärungen immer fristgerecht ein?',
-                                   choices=[('web7a', 'Ja'), ('web7b', 'Nein'), ('web7c', 'Nein'), ('web7d', 'Nein')],
+     web7 = RadioField('Warum sind besonders KMU anfällig für Directory Traversal Angriffe?',
+                                   choices=[('Falsch', 'Sie betreiben in der Regel keine Webanwendungen'), ('Richtig', 'Sie nutzen oft einfache Webtools, die Eingaben nicht ausreichend prüfen'), ('Falsch', 'Sie verwenden ausschließlich Cloud-Dienste ohne lokale Pfade')],
                                    validators=[DataRequired()])
-     #Frage 8
-     web8 = RadioField('Haben Sie in den letzten 2 Jahren Umsatzsteuer-Nachforderungen erhalten?',
-                                 choices=[('web8a', 'Ja'), ('web8b', 'Nein'), ('web8c', 'Nein'), ('web8d', 'Nein')],
-                                 validators=[DataRequired()])
-     #Frage 9
-     web9 = RadioField('Dokumentieren Sie Trinkgelder gemäß den steuerlichen Vorgaben?',
-                             choices=[('web9a', 'Ja'), ('web9b', 'Nein'), ('web9c', 'Nein'), ('web9d', 'Nein')],
-                             validators=[DataRequired()])
-     #Frage 10
-     web10 = RadioField('Werden Ihre Mitarbeitenden regelmäßig zu steuerlichen Vorgaben geschult (z.B. Kassensicherungsverordnung, Trinkgeldregelung)?',
-                          choices=[('web10a', 'Ja'), ('web10b', 'Nein'), ('web10c', 'Nein'), ('web10d', 'Nein')],
-                          validators=[DataRequired()])
-     
      #Einreichen
      submit = SubmitField('Fertig')
 
