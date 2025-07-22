@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% import "bootstrap/form.html" as wtf %}
+{% block title %}Startseite{% endblock %}
+{% block content %}
+<div class="container">
+    <h2 class="my-4">Soziale Angriffe Quiz</h2>
+
+    <form method="POST" action="/quizsoc">
+        {{ form.hidden_tag() }}
+        
+        <div class="card mb-4">
+            <div class="card-body">
+                {{ wtf.render_field(form.soc1) }}
+                {{ wtf.render_field(form.soc2) }}
+                {{ wtf.render_field(form.soc3) }}
+                {{ wtf.render_field(form.soc4) }}
+                {{ wtf.render_field(form.soc5) }}
+                {{ wtf.render_field(form.soc6) }}
+                {{ wtf.render_field(form.soc7) }}
+                {{ wtf.render_field(form.soc8) }}
+                {{ wtf.render_field(form.soc9) }}
+                {{ wtf.render_field(form.soc10) }}
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">
+                ← Zurück zur Startseite
+            </a>
+            <button type="submit" class="btn btn-success">
+                {{ form.submit.label.text }} →
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

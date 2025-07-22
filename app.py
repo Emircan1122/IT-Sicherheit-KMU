@@ -6,13 +6,12 @@ from sqlalchemy import func
 import werkzeug
 
 from CalculateResult import CalculateResult
-from SchnellCheckForm import SchnellCheckForm
+from SchnellCheckForm import *
 from AusführlicherCheckForm import *
 
 from PdfGenerator import PdfGenerator
 
 import logging
-
 
 app = Flask(__name__) 
 pdf_generator = PdfGenerator()
@@ -25,7 +24,6 @@ app.config.from_mapping(
  
 from db import *
 
-
 bootstrap = Bootstrap5(app)
 
 MAX_REPORTS_PER_USER = 4
@@ -36,141 +34,215 @@ def index():
     session.pop('form_data', default= None)
     session.pop('step', default= None)
 
-    if current_user.is_authenticated:
-        return render_template('index.html',hide_login_register = True)
-    else:
-        return render_template('index.html',hide_mein_bereich = True, hide_logout = True)
+   
+    return render_template('index.html')
     
 #flask run in terminal um die seite aufzurufen, flask run --reload damit man nicht immer neustarten muss
-
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    form = LoginForm()
-    if form.validate_on_submit():
-        login_user(form.user) 
-        return redirect(url_for('meinBereich', name=form.user.username, id=form.user.id))
-
-    return render_template('login.html', form=form, hide_mein_bereich=True, hide_logout = True, hide_login_register=True)
-                     
-@app.route('/register', methods=['GET', 'POST'])       
-def register():          
-     print("Request-Methode:", request.method)  
-
-   
-     if request.method == 'POST': 
-        print("POST-Request erhalten!")
-
-     form = RegisterForm()
-     print("Fehler:", form.errors) 
-     if form.validate_on_submit():    
-        
-            app.logger.debug('Validating...')
-            hashed_password = werkzeug.security.generate_password_hash(form.password.data, method='scrypt', salt_length=16)
-            app.logger.debug(f'Hashed pw {hashed_password}') 
-            new_user = User(username=form.username.data, password=hashed_password)
-            app.logger.debug(f'New User {new_user}')
-            db.session.add(new_user)
-            app.logger.debug(f'Adding... {new_user}')
-            db.session.commit()
-            app.logger.debug(f'Comitted.')
-            login_user(new_user)
-            return redirect(url_for('meinBereich'))            
-     else:
-        print("Formularvalidierung fehlgeschlagen!")
-        print("Fehler:" ) 
-     return render_template('register.html', form = form,hide_mein_bereich = True,hide_login_register = True, hide_logout = True)
-
-@app.route('/mein-bereich', methods=['GET', 'POST'])
-@login_required  
-def meinBereich():            
-    user_name = current_user.username
-    user_reports = db.session.execute(
-    db.select(Report).filter_by(parent_id=current_user.id)).scalars().all()
-
-    return render_template('meinBereich.html', name=user_name, reports = user_reports,hide_login_register = True)
-
-@app.route('/logout', methods=['GET', 'POST'])
-@login_required
-def logout():    
-    logout_user()
-    return redirect(url_for('index'))
  
 @app.route('/home')
 def home():
     return redirect(url_for('index'))
 
+@app.route('/LehrinhalteBase')
+def LehrinhalteBase():
+    return render_template('LehrinhalteBase.html')
 
+@app.route('/webanwendungen')
+def webanwendungen():
+    return render_template('webanwendungen.html')
 
-@app.route('/schnelltest', methods=['GET', 'POST'])
-def schnelltest(): 
-    test_type = 'Schnell'
+@app.route('/netzwerkinfrastruktur')
+def netzwerkinfrastruktur():
+    return render_template('netzwerkinfrastruktur.html')
+
+@app.route('/socialengineering')
+def socialengineering():
+    return render_template('socialengineering.html')
+
+@app.route('/malwarebasiert')
+def malwarebasiert():
+    return render_template('malwarebasiert.html')
+
+@app.route('/bekoid')
+def bekoid():
+    return render_template('bekoid.html')
+
+@app.route('/quizweb', methods=['GET', 'POST'])
+def quizweb():
+    test_type = 'web'
     session['test_type'] = test_type
-    
-    form = SchnellCheckForm() 
-    if form.validate_on_submit():                       
-        
-        
+    form = quizwebanwendungen()
+    if form.validate_on_submit():
         session['form_data'] = {field.name: field.data for field in form}  
         app.logger.debug(f'Form data Schnelltest: {session['form_data']} Test Type: {test_type}-----------------------------------')
-
-
         calculator = CalculateResult(test_type, session['form_data'])  
         app.logger.debug(f'Calculator inputs, testtype: {test_type}, form data: {session['form_data']}------------------------------------')
-
         ampelfarbe, punkte = calculator.calcResults() 
         session['ampelfarbe'] = ampelfarbe
         app.logger.debug(f'Ampelfarbe result: {ampelfarbe}, session ampelfarbe: {session['ampelfarbe']},  Punkte: {punkte} ------------------------------------------')
-
-        filename = pdf_generator.generate_pdf(session['form_data'])  
-                                    
-        with open(filename, 'rb') as file:
-            pdf_data = file.read() 
-            if current_user.is_authenticated:
-            
-                report = Report(parent_id=current_user.id, file=pdf_data, test_type = test_type)
-                db.session.add(report)
-                db.session.commit() 
-
-        # damit die antworten in der html angezeigt werden
         user_answers = {
-            'Wie ist Ihr Gastronomiebetrieb strukturiert?': form.betrieb.data,
-            'Erfüllt Ihr Kassensystem die Anforderungen einer zertifizierten technischen Sicherheitseinrichtung (TSE)?': form.tse.data,
-            'Geben Sie für jede Transaktion einen Beleg aus?': form.beleg.data,
-            'Wurde Ihr Kassensystem innerhalb der letzten 12 Monate geprüft oder zertifiziert?': form.pruefung.data,
-            'Trennen Sie Speisen (7% MwSt.) und Getränke (19% MwSt.) korrekt in Ihrer Buchhaltung?': form.trennung.data,
-            'Erfassen Sie alle Einnahmen aus Barzahlungen, Kartenzahlungen und Lieferdiensten vollständig?': form.einnahmen.data,
-            'Reichen Sie Ihre Steuererklärungen immer fristgerecht ein?': form.steuererklärungen.data,
-            'Haben Sie in den letzten 2 Jahren Umsatzsteuer-Nachforderungen erhalten?': form.nachforderungen.data,
-            'Dokumentieren Sie Trinkgelder gemäß den steuerlichen Vorgaben?': form.trinkgelder.data,
-            'Werden Ihre Mitarbeitenden regelmäßig zu steuerlichen Vorgaben geschult (z.B. Kassensicherungsverordnung, Trinkgeldregelung)?': form.schulung.data,
+            'Wie ist Ihr Gastronomiebetrieb strukturiert?': form.web1.data,
+            'Erfüllt Ihr Kassensystem die Anforderungen einer zertifizierten technischen Sicherheitseinrichtung (TSE)?': form.web2.data,
+            'Geben Sie für jede Transaktion einen Beleg aus?': form.web3.data,
+            'Wurde Ihr Kassensystem innerhalb der letzten 12 Monate geprüft oder zertifiziert?': form.web4.data,
+            'Trennen Sie Speisen (7% MwSt.) und Getränke (19% MwSt.) korrekt in Ihrer Buchhaltung?': form.web5.data,
+            'Erfassen Sie alle Einnahmen aus Barzahlungen, Kartenzahlungen und Lieferdiensten vollständig?': form.web6.data,
+            'Reichen Sie Ihre Steuererklärungen immer fristgerecht ein?': form.web7.data,
+            'Haben Sie in den letzten 2 Jahren Umsatzsteuer-Nachforderungen erhalten?': form.web8.data,
+            'Dokumentieren Sie Trinkgelder gemäß den steuerlichen Vorgaben?': form.web9.data,
+            'Werden Ihre Mitarbeitenden regelmäßig zu steuerlichen Vorgaben geschult (z.B. Kassensicherungsverordnung, Trinkgeldregelung)?': form.web10.data,
         }
-    
         eingaben = [] 
-
         for frage, user_answer in user_answers.items():
             eingaben.append({
                 'question': frage, 
                 'user_answer': user_answer,       
             }) 
-        
         session['form_eingaben'] = eingaben
-  
-        return redirect(url_for('result', filename = filename))
+        return redirect(url_for('result'))
+    return render_template('quizweb.html', form=form)
 
-    if current_user.is_authenticated:
-        user_report_count = db.session.execute(
-            db.select(func.count(Report.id)).filter_by(parent_id=current_user.id)).scalar() + 1    
-        if user_report_count >= MAX_REPORTS_PER_USER:
-            flash("Sie haben das Limit an gespeicherten Berichten erreicht. Löschen sie einen um einen neuen zu starten.", "danger")
-            return redirect(url_for('meinBereich'))
-        return render_template('schnelltest.html', form=form, hide_login_register = True)
-    else:
-        return render_template('schnelltest.html', form=form,hide_mein_bereich = True, hide_logout = True)
-    
+@app.route('/quiznet', methods=['GET', 'POST'])
+def quiznet():
+    test_type = 'net'
+    session['test_type'] = test_type
+    form = quiznetzwerk()
+    if form.validate_on_submit():
+        session['form_data'] = {field.name: field.data for field in form}  
+        app.logger.debug(f'Form data Schnelltest: {session['form_data']} Test Type: {test_type}-----------------------------------')
+        calculator = CalculateResult(test_type, session['form_data'])  
+        app.logger.debug(f'Calculator inputs, testtype: {test_type}, form data: {session['form_data']}------------------------------------')
+        ampelfarbe, punkte = calculator.calcResults() 
+        session['ampelfarbe'] = ampelfarbe
+        app.logger.debug(f'Ampelfarbe result: {ampelfarbe}, session ampelfarbe: {session['ampelfarbe']},  Punkte: {punkte} ------------------------------------------')
+        user_answers = {
+            'Wie ist Ihr Gastronomiebetrieb strukturiert?': form.net1.data,
+            'Erfüllt Ihr Kassensystem die Anforderungen einer zertifizierten technischen Sicherheitseinrichtung (TSE)?': form.net2.data,
+            'Geben Sie für jede Transaktion einen Beleg aus?': form.net3.data,
+            'Wurde Ihr Kassensystem innerhalb der letzten 12 Monate geprüft oder zertifiziert?': form.net4.data,
+            'Trennen Sie Speisen (7% MwSt.) und Getränke (19% MwSt.) korrekt in Ihrer Buchhaltung?': form.net5.data,
+            'Erfassen Sie alle Einnahmen aus Barzahlungen, Kartenzahlungen und Lieferdiensten vollständig?': form.net6.data,
+            'Reichen Sie Ihre Steuererklärungen immer fristgerecht ein?': form.net7.data,
+            'Haben Sie in den letzten 2 Jahren Umsatzsteuer-Nachforderungen erhalten?': form.net8.data,
+            'Dokumentieren Sie Trinkgelder gemäß den steuerlichen Vorgaben?': form.net9.data,
+            'Werden Ihre Mitarbeitenden regelmäßig zu steuerlichen Vorgaben geschult (z.B. Kassensicherungsverordnung, Trinkgeldregelung)?': form.net10.data,
+        }
+        eingaben = [] 
+        for frage, user_answer in user_answers.items():
+            eingaben.append({
+                'question': frage, 
+                'user_answer': user_answer,       
+            }) 
+        session['form_eingaben'] = eingaben
+        return redirect(url_for('result'))
+    return render_template('quiznet.html', form=form)
+
+@app.route('/quizsoc', methods=['GET', 'POST'])
+def quizsoc():
+    test_type = 'soc'
+    session['test_type'] = test_type
+    form = quizsocial()
+    if form.validate_on_submit():
+        session['form_data'] = {field.name: field.data for field in form}  
+        app.logger.debug(f'Form data Schnelltest: {session['form_data']} Test Type: {test_type}-----------------------------------')
+        calculator = CalculateResult(test_type, session['form_data'])  
+        app.logger.debug(f'Calculator inputs, testtype: {test_type}, form data: {session['form_data']}------------------------------------')
+        ampelfarbe, punkte = calculator.calcResults() 
+        session['ampelfarbe'] = ampelfarbe
+        app.logger.debug(f'Ampelfarbe result: {ampelfarbe}, session ampelfarbe: {session['ampelfarbe']},  Punkte: {punkte} ------------------------------------------')
+        user_answers = {
+            'Wie ist Ihr Gastronomiebetrieb strukturiert?': form.soc1.data,
+            'Erfüllt Ihr Kassensystem die Anforderungen einer zertifizierten technischen Sicherheitseinrichtung (TSE)?': form.soc2.data,
+            'Geben Sie für jede Transaktion einen Beleg aus?': form.soc3.data,
+            'Wurde Ihr Kassensystem innerhalb der letzten 12 Monate geprüft oder zertifiziert?': form.soc4.data,
+            'Trennen Sie Speisen (7% MwSt.) und Getränke (19% MwSt.) korrekt in Ihrer Buchhaltung?': form.soc5.data,
+            'Erfassen Sie alle Einnahmen aus Barzahlungen, Kartenzahlungen und Lieferdiensten vollständig?': form.soc6.data,
+            'Reichen Sie Ihre Steuererklärungen immer fristgerecht ein?': form.soc7.data,
+            'Haben Sie in den letzten 2 Jahren Umsatzsteuer-Nachforderungen erhalten?': form.soc8.data,
+            'Dokumentieren Sie Trinkgelder gemäß den steuerlichen Vorgaben?': form.soc9.data,
+            'Werden Ihre Mitarbeitenden regelmäßig zu steuerlichen Vorgaben geschult (z.B. Kassensicherungsverordnung, Trinkgeldregelung)?': form.soc10.data,
+        }
+        eingaben = [] 
+        for frage, user_answer in user_answers.items():
+            eingaben.append({
+                'question': frage, 
+                'user_answer': user_answer,       
+            }) 
+        session['form_eingaben'] = eingaben
+        return redirect(url_for('result'))
+    return render_template('quizsoc.html', form=form)
+
+@app.route('/quizmal', methods=['GET', 'POST'])
+def quizmal():
+    test_type = 'mal'
+    session['test_type'] = test_type
+    form = quizmaleware()
+    if form.validate_on_submit():
+        session['form_data'] = {field.name: field.data for field in form}  
+        app.logger.debug(f'Form data Schnelltest: {session['form_data']} Test Type: {test_type}-----------------------------------')
+        calculator = CalculateResult(test_type, session['form_data'])  
+        app.logger.debug(f'Calculator inputs, testtype: {test_type}, form data: {session['form_data']}------------------------------------')
+        ampelfarbe, punkte = calculator.calcResults() 
+        session['ampelfarbe'] = ampelfarbe
+        app.logger.debug(f'Ampelfarbe result: {ampelfarbe}, session ampelfarbe: {session['ampelfarbe']},  Punkte: {punkte} ------------------------------------------')
+        user_answers = {
+            'Wie ist Ihr Gastronomiebetrieb strukturiert?': form.mal1.data,
+            'Erfüllt Ihr Kassensystem die Anforderungen einer zertifizierten technischen Sicherheitseinrichtung (TSE)?': form.mal2.data,
+            'Geben Sie für jede Transaktion einen Beleg aus?': form.mal3.data,
+            'Wurde Ihr Kassensystem innerhalb der letzten 12 Monate geprüft oder zertifiziert?': form.mal4.data,
+            'Trennen Sie Speisen (7% MwSt.) und Getränke (19% MwSt.) korrekt in Ihrer Buchhaltung?': form.mal5.data,
+            'Erfassen Sie alle Einnahmen aus Barzahlungen, Kartenzahlungen und Lieferdiensten vollständig?': form.mal6.data,
+            'Reichen Sie Ihre Steuererklärungen immer fristgerecht ein?': form.mal7.data,
+            'Haben Sie in den letzten 2 Jahren Umsatzsteuer-Nachforderungen erhalten?': form.mal8.data,
+            'Dokumentieren Sie Trinkgelder gemäß den steuerlichen Vorgaben?': form.mal9.data,
+            'Werden Ihre Mitarbeitenden regelmäßig zu steuerlichen Vorgaben geschult (z.B. Kassensicherungsverordnung, Trinkgeldregelung)?': form.mal10.data,
+        }
+        eingaben = [] 
+        for frage, user_answer in user_answers.items():
+            eingaben.append({
+                'question': frage, 
+                'user_answer': user_answer,       
+            }) 
+        session['form_eingaben'] = eingaben
+        return redirect(url_for('result'))
+    return render_template('quizmal.html', form=form)
+
+@app.route('/quizbekoid', methods=['GET', 'POST'])
+def quizbekoid():
+    test_type = 'bekoid'
+    session['test_type'] = test_type
+    form = quizBekoid()
+    if form.validate_on_submit():
+        session['form_data'] = {field.name: field.data for field in form}  
+        app.logger.debug(f'Form data Schnelltest: {session['form_data']} Test Type: {test_type}-----------------------------------')
+        calculator = CalculateResult(test_type, session['form_data'])  
+        app.logger.debug(f'Calculator inputs, testtype: {test_type}, form data: {session['form_data']}------------------------------------')
+        ampelfarbe, punkte = calculator.calcResults() 
+        session['ampelfarbe'] = ampelfarbe
+        app.logger.debug(f'Ampelfarbe result: {ampelfarbe}, session ampelfarbe: {session['ampelfarbe']},  Punkte: {punkte} ------------------------------------------')
+        user_answers = {
+            'Wie ist Ihr Gastronomiebetrieb strukturiert?': form.bekoid1.data,
+            'Erfüllt Ihr Kassensystem die Anforderungen einer zertifizierten technischen Sicherheitseinrichtung (TSE)?': form.bekoid2.data,
+            'Geben Sie für jede Transaktion einen Beleg aus?': form.bekoid3.data,
+            'Wurde Ihr Kassensystem innerhalb der letzten 12 Monate geprüft oder zertifiziert?': form.bekoid4.data,
+            'Trennen Sie Speisen (7% MwSt.) und Getränke (19% MwSt.) korrekt in Ihrer Buchhaltung?': form.bekoid5.data,
+            'Erfassen Sie alle Einnahmen aus Barzahlungen, Kartenzahlungen und Lieferdiensten vollständig?': form.bekoid6.data,
+            'Reichen Sie Ihre Steuererklärungen immer fristgerecht ein?': form.bekoid7.data,
+            'Haben Sie in den letzten 2 Jahren Umsatzsteuer-Nachforderungen erhalten?': form.bekoid8.data,
+            'Dokumentieren Sie Trinkgelder gemäß den steuerlichen Vorgaben?': form.bekoid9.data,
+            'Werden Ihre Mitarbeitenden regelmäßig zu steuerlichen Vorgaben geschult (z.B. Kassensicherungsverordnung, Trinkgeldregelung)?': form.bekoid10.data,
+        }
+        eingaben = [] 
+        for frage, user_answer in user_answers.items():
+            eingaben.append({
+                'question': frage, 
+                'user_answer': user_answer,       
+            }) 
+        session['form_eingaben'] = eingaben
+        return redirect(url_for('result'))
+    return render_template('quizbekoid.html', form=form)
 
 @app.route('/ausführlicherTest', methods=['GET', 'POST'])
-@login_required
 def ausführlicherTest():
     session.setdefault('form_data_ausführlich', {})
     session.setdefault('step', 1)
@@ -262,7 +334,7 @@ def ausführlicherTest():
                     'steuererklärungen', 'einkommensdokumentation', 'getrennte_steuersätze', 'steuerprüfung', 'nachforderungsdokumentation', 'audits',
                     'trinkgelder_dokumentation', 'trinkgelder_steuer', 'mitarbeiterschulungen'
                 ] 
- 
+
                 eingaben = [] 
                 for field in question_order:
                     if field in form_data:
@@ -280,19 +352,10 @@ def ausführlicherTest():
     for field in form:
         if field.name in form_data:
             field.data = form_data[field.name]
-            
-    if current_user.is_authenticated:
-        user_report_count = db.session.execute(
-            db.select(func.count(Report.id)).filter_by(parent_id=current_user.id)
-        ).scalar() + 1        
-        app.logger.debug(f'Reportscount: {user_report_count}')
-        if user_report_count >= MAX_REPORTS_PER_USER:
-            app.logger.debug(f'Entereded If clause: {user_report_count}')
-            flash("Sie haben das Limit an gespeicherten Berichten erreicht.", "danger")
-            return redirect(url_for('meinBereich')) 
-        return render_template('ausführlicherTest.html', form=form, current_step=current_step, total_steps=5, hide_login_register = True)
+
+        return render_template('ausführlicherTest.html', form=form, current_step=current_step, total_steps=5)
     else: 
-        return render_template('ausführlicherTest.html', form=form, current_step=current_step, total_steps=5, hide_mein_bereich = True, hide_logout = True)
+        return render_template('ausführlicherTest.html', form=form, current_step=current_step, total_steps=5)
 
  
 @app.route("/result")
@@ -302,59 +365,15 @@ def result():
  
     if not form_eingaben: 
         return "Fehler: daten nicht gefunden."
-    
-    if current_user.is_authenticated:
-        return render_template("result.html", filename=filename, form_eingaben = form_eingaben, ampelfarbe = session['ampelfarbe'], hide_login_register = True)
-    else:
-        return render_template("result.html", filename=filename, form_eingaben = form_eingaben, ampelfarbe = session['ampelfarbe'],hide_mein_bereich = True, hide_logout = True)
+
+    return render_template("result.html", filename=filename, form_eingaben = form_eingaben, ampelfarbe = session['ampelfarbe'])
 
 @app.route("/download/<filename>")     
 def download_pdf(filename):
     return send_file(filename, as_attachment=True)
 
 from flask import send_file, abort
-import io
-
-@app.route('/download_pdf/<int:report_id>')
-@login_required
-def download_pdf_meinBereich(report_id):        
-    reportRow = db.session.execute(db.select(Report).filter_by(id=report_id))
-    report = reportRow.scalar_one_or_none()
-
-    if not report or report.parent_id != current_user.id:
-        abort(403)     
-             
-    if report.file:                   
-        pdf_stream = io.BytesIO(report.file)    
-        pdf_stream.seek(0)   
-  
-        return send_file(pdf_stream, download_name=f"report_{report_id}.pdf", as_attachment=True, mimetype="application/pdf")
-    else:       
-        abort(404)       
-
-@app.route('/deleteReport', methods=['POST'])
-@login_required
-def delReport():
-         report_id = request.form.get('report_id')  
-         if not report_id:
-            flash("Ungültige Anfrage: Keine Report-ID angegeben", "danger")
-            return redirect(url_for('meinBereich')) 
-
-         reportRow = db.session.execute(db.select(Report).filter_by(id=report_id))
-         report = reportRow.scalar_one_or_none()
-
-         if not report or report.parent_id != current_user.id:
-                flash("Fehler: Zugriff verweigert oder Bericht nicht gefunden.", "danger")
-                return redirect(url_for('meinBereich'))
-
-         db.session.delete(report)
-         db.session.commit() 
-         flash(f"Bericht {report_id} wurde erfolgreich gelöscht.", "success")
-
-         return redirect(url_for('meinBereich'))
-        
- 
-
+import io 
    
 if __name__ == "__main__":
     app.run(debug=True)    

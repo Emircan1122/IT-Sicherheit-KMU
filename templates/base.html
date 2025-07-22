@@ -5,63 +5,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
     {% block title %}
-    SIC!             {#Weil <title> um den title block drum ist, kann man in jeder html title überschreiben und braucht keinen <title> mehr (Standardgemäß wird SIC! eingesetzt wenn der title Block fehlt) #}
+    IT-Sicherheit für KMU!
     {% endblock %}
     </title>
 
     {{ bootstrap.load_css() }}
+    <style>
+        :root {
+            --security-primary: #0d3b66;     /* Dunkelblau für Vertrauen & Professionalität */
+            --security-secondary: #1a5f9e;   /* Mittelblau */
+            --security-accent: #f39c12;      /* Orange für Warnungen/Handlungsaufforderung */
+            --security-light: #f0f8ff;       /* Helles Blau für Hintergründe */
+            --security-dark: #2c3e50;        /* Dunkelgraublau für Text */
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: var(--security-dark);
+            min-height: 100vh;
+        }
+        
+        .navbar-custom {
+            background: linear-gradient(90deg, var(--security-primary) 0%, var(--security-secondary) 100%);
+            box-shadow: 0 4px 12px rgba(13, 59, 102, 0.15);
+        }
+        
+        .security-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(13, 59, 102, 0.1);
+            border-top: 3px solid var(--security-accent);
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .btn-security {
+            background: var(--security-secondary);
+            border-color: var(--security-primary);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-security:hover {
+            background: var(--security-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(13, 59, 102, 0.2);
+        }
+        
+        .alert-security {
+            background: #e3f2fd;
+            border-left: 4px solid var(--security-secondary);
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .security-highlight {
+            color: var(--security-secondary);
+            font-weight: 600;
+        }
+        
+        footer {
+            background: var(--security-primary);
+            color: rgba(255,255,255,0.85);
+            padding: 1.5rem 0;
+            margin-top: auto;
+        }
+    </style>
 </head>
-<body class="bg-body bg-gradient">
+<body class="d-flex flex-column">
+    <!-- Navbar mit Sicherheitsfarben -->
+    <nav class="navbar navbar-expand-lg navbar-custom fs-5" data-bs-theme="dark">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{{url_for('home')}}">
+                <i class="bi bi-shield-lock me-2"></i>IT-Sicherheit für KMU!
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSecurity" aria-controls="navbarSecurity" aria-expanded="false">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-<nav class="navbar navbar-expand-lg bg-dark fs-5" data-bs-theme="dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="{{url_for('home')}}">SIC! - Der Sustainable Innovation Check!</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>   {# für Dynamik wenn der Bildschirm eines Feräts kleiner ist, kann er sinst die navbar nicht sehen #}
+            <div class="collapse navbar-collapse" id="navbarSecurity"> 
+                <ul class="navbar-nav ms-auto">
+                    <!-- Beispielmenüpunkt -->
+                    <!--
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="bi bi-speedometer2 me-1"></i>Dashboard
+                        </a>
+                    </li>
+                    -->
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <div class="collapse navbar-collapse" id="navbarColor02"> 
-      <ul class="navbar-nav ms-auto"> {# me-auto wenn text nach links soll#}
-        <li class="nav-item">
-          <a class="nav-link active" href="{{url_for('home')}}">Startseite</a>
-        </li>
-        {% if not hide_mein_bereich %}
-        <li class="nav-item">
-          <a class="nav-link active" href="{{url_for('meinBereich', name='deinWert')}}">Mein Bereich</a>
-        </li>
-        {% endif %}
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Tests</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item text-white" href="{{url_for('schnelltest')}}">Schnelltest</a>
-            <a class="dropdown-item text-white" href="{{url_for('ausführlicherTest')}}">Ausführlicher Test</a>
-          </div>
-        </li>
-        {% if not hide_logout%}
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('logout')}}">Abmelden</a>
-        </li>
-        {% endif %}
-        {% if not hide_login_register %}
-        <li class="nav-item">
-          <a class="nav-link active" href="{{url_for('login')}}">Anmelden</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="{{url_for('register')}}">Registrieren</a>
-        </li>
-        {% endif %}
-      </ul>
-    </div>
-  </div>
-</nav>
-
-    <main class="container mt-4">
-        {% block content %}
-
-
-       
-        {% endblock %}
+    <!-- Hauptinhalt mit Sicherheitscontainer -->
+    <main class="container my-4 flex-grow-1">
+        <div class="security-container">
+            {% block content %}
+            <!-- Inhalt kommt hier -->
+            {% endblock %}
+        </div>
     </main>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5 class="mb-3">IT-Sicherheit für KMU</h5>
+                    <p class="mb-0">Ihr Partner für Cybersicherheit im Mittelstand</p>
+                </div>
+                <div class="col-md-6 mt-3 mt-md-0">
+                    <p class="mb-1">Sicherheits-Hotline: <span class="security-highlight">0800-SICHER</span></p>
+                    <p class="mb-0">Notfall: <span class="text-warning">security@example.com</span></p>
+                </div>
+            </div>
+            <hr class="my-3 opacity-25">
+            <p class="mb-0 small">&copy; 2025 IT-Sicherheit für KMU | Alle Rechte vorbehalten</p>
+        </div>
+    </footer>
 
     {{ bootstrap.load_js() }}
 </body>

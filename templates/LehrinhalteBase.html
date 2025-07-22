@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block title %}Startseite{% endblock %}
+
+{% block content %}
+{# <div class="jumbotron text-center">
+
+    <div class="container py-5 mt-5">
+    <div class="row">
+        
+        <div class="col-md-6">
+            <div class="p-4 bg-light border rounded shadow-lg h-100">
+                <h3 class="text-dark fw-bold fs-4">Das Problem:</h3>
+                <p class="mb-4 pb-2 border-bottom text-muted fs-5">
+                Ein Imbissbesitzer, der ich nicht mit den Steuergesetzen, möglicher Weise noch aus dem Ausland kommt und 
+                kaum die Steuergesetze Deutschlands versteht, möchte sein Betrieb Steuertranzparenter machen um Nachhaltiger zu wirtschaften. Da Gastrobetriebe öfters um das 
+                wirtschaftliche überleben kämpfen müssen, steht ein Steuerberater außer Frage.</p>
+            </div>
+        </div>
+      
+        <div class="col-md-6">
+            <div class="p-4 bg-light border rounded shadow-lg h-100">
+                <h3 class="text-dark fw-bold fs-4">Die Lösung:</h3>
+                <p class="mb-4 pb-2 border-bottom text-muted fs-5">
+                Der Sustainable Innovation Check soll klein bis mittleren Unternehmern die Chance geben sich kostengünstig, simpel und schnell Nachhaltig zu verhalten. 
+                In einem Online Check kann der Nutzer seine Situation beschreiben indem unser Team die relevante, rechtliche Lage verständnisvoll darlegt. 
+                Nach dem Check bekommt der Nutzer einen Nachhaltigkeitsbericht(Einschätzung), welche Ihm Probleme, mögliche Probleme und Verbesserung vorschlägt.</p>
+                </p>
+            </div>
+        </div>
+    </div>
+    </div>
+        
+        <a href ="{{url_for('schnelltest')}}"><button type="button" class="btn btn-secondary btn-lg">Zum Schnelltest</button></a>
+        <a href="{{url_for('ausführlicherTest')}}"><button type="button" class="btn btn-primary btn-lg">Zum auführlichen Test</button></a>
+
+</div> #}
+
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h3 class="fw-bold display- mb-3">Lehrinhalte</h3>
+        <p class="lead  fs-7">
+            Wir haben die Angriffsarten von Hackern systematisch in kategorien unterteilt.
+            Bei der Unterteilung haben wir es abhängig davon gemacht, wo angesetzt wird, welche Schwachstellen ausgenutzt werden und mit welchem Ziel.
+            Je nach bedürfniss können Sie sich relevante Informationen aneignen, außerdem gibt es am ende eines jeden Abschnittes Quizze, lassen sie sich nicht von unbekannten Begriffen abschrecken, diese werden im jeweiligen Abschnitt erklärt.
+            <br><br>
+            Viel Spaß
+        </p>
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <div class="d-flex flex-column justify-content-between p-5 bg-light border rounded shadow-lg h-100">
+                <h5 class="text-dark fw-bold fs-4 text-center mb-4">Angriffe auf Webanwendungen</h5>
+                <p class=" fs-5">
+                    Diese zielen auf öffentlich erreichbare Webseiten und Webportale:</p>
+                    <p class=" fs-5">
+                    - SQL-Injection</p>
+                    <p class=" fs-5">
+                    - Cross-Site Scripting (XSS)</p>
+                    <p class=" fs-5">
+                    - Directory Traversal </p>
+                <a href="{{url_for('webanwendungen')}}"><button type="button" class="btn btn-primary btn-lg" style="background-color: #007bff; color: white;">Zu den Inhalten</button></a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="d-flex flex-column justify-content-between p-5 bg-light border rounded shadow-lg h-100">
+                <h5 class="text-dark fw-bold fs-4 text-center mb-4">Netzwerkinfrastruktur-Angriffe</h5>
+                <p class=" fs-5">
+                    Zielen auf das interne oder externe Netzwerk:</p>
+                    <p class=" fs-5">
+                    - Man-in-the-Middle (MITM)</p>
+                    <p class=" fs-5">
+                    - Denial of Service (DoS/DDoS)</p>
+                <a href="{{url_for('netzwerkinfrastruktur')}}"><button type="button" class="btn btn-primary btn-lg" style="background-color: #007bff; color: white;">Zu den Inhalten</button></a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="d-flex flex-column justify-content-between p-5 bg-light border rounded shadow-lg h-100">
+                <h4 class="text-dark fw-bold fs-4 text-center mb-4">Soziale Angriffe (Social Engineering)</h4>
+                <p class=" fs-5">
+                    Hier wird das menschliche Verhalten ausgenutzt, nicht die Technik:</p>
+                    <p class=" fs-5">
+                    - Phishing</p>
+                    <p class=" fs-5">
+                    - Spear Phishing</p>
+               <a href="{{url_for('socialengineering')}}"><button type="button" class="btn btn-primary btn-lg" style="background-color: #007bff; color: white;">Zu den Inhalten</button></a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row g-4 justify-content-center">
+
+        <div class="col-md-4">
+            <div class="d-flex flex-column justify-content-between p-5 bg-light border rounded shadow-lg h-100">
+                <h5 class="text-dark fw-bold fs-4 text-center mb-4">Malware-basierte Angriffe</h5>
+                <p class=" fs-5">
+                    Einschleusen von Schadsoftware:</p>
+                    <p class=" fs-5">
+                    - Ransomware</p>
+                    <p class=" fs-5">
+                    - Würmer</p>
+                    <p class=" fs-5">
+                    - Trojaner</p>
+                <a href="{{url_for('malwarebasiert')}}"><button type="button" class="btn btn-primary btn-lg" style="background-color: #007bff; color: white;">Zu den Inhalten</button></a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="d-flex flex-column justify-content-between p-5 bg-light border rounded shadow-lg h-100">
+                <h5 class="text-dark fw-bold fs-4 text-center mb-4">Angriffe auf Benutzerkonten und Identität</h5>
+                <p class=" fs-5">
+                    Ziel ist der Zugriff auf Benutzerkonten:</p>
+                    <p class=" fs-5">
+                    - Brute-Force-Angriffe</p>
+                    <p class=" fs-5">
+                    - Privilege Escalation
+                </p>
+               <a href="{{url_for('bekoid')}}"><button type="button" class="btn btn-primary btn-lg" style="background-color: #007bff; color: white;">Zu den Inhalten</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+    
+       

@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+{% block title %}Startseite{% endblock %}
+{% block content %}
+
+<div class="text-center mb-5">
+    <h3 class="fw-bold text-dark display-">Angriffe auf Benutzerkonten und Identität</h3>
+    <p></p>
+    <p class="lead text-dark fs-7">
+        Benutzerkonten sind der Schlüssel zu digitalen Systemen und genau deshalb ein bevorzugtes Ziel für Cyberangriffe. Ob durch Brute-Force-Angriffe, bei denen Passwörter systematisch erraten werden, oder durch komplexere Techniken wie Pass-the-Hash und Privilege Escalation: Gelingt es Angreifern, in ein Benutzerkonto einzudringen, können sie sich oft unbemerkt im gesamten Netzwerk ausbreiten.
+        Gerade in kleinen und mittleren Unternehmen fehlen häufig klare Richtlinien zur Kontosicherheit, zu einfache Passwörter, zu weitreichende Rechte oder fehlende Überwachung machen es Angreifern leicht.
+        In diesem Abschnitt erklären wir, wie Angriffe auf Identitäten ablaufen, welche Schwachstellen besonders häufig ausgenutzt werden und wie Sie Ihre Systeme absichern können, zum Beispiel durch starke Passwortrichtlinien, Multi-Faktor-Authentifizierung oder die gezielte Einschränkung von Benutzerrechten.
+        Alle Begriffe und Konzepte werden verständlich und ohne technisches Vorwissen erklärt. Zum Abschluss können Sie Ihr Wissen in einem kurzen Quiz testen.
+    </p>
+</div>
+
+<div class="accordion mb-3" id="accordionItem1">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="heading1">
+      <button class="accordion-button collapsed fs-4 fw-bold text-dark"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapse1"
+              aria-expanded="false"
+              aria-controls="collapse1">
+        Brute-Force-Angriffe
+      </button>
+    </h2>
+    <div id="collapse1"
+         class="accordion-collapse collapse"
+         aria-labelledby="heading1">
+      <div class="accordion-body p-4 bg-light border rounded shadow-lg">
+        <h3 class="fs-5 fw-bold">Was ist ein Brute-Force-Angriff?</h3>
+        <p>
+          Ein Brute-Force-Angriff ist eine Methode, bei der ein Computer automatisch sehr viele 
+          Passwortkombinationen ausprobiert, so lange, bis das richtige Passwort gefunden wurde. 
+          Dabei kommen sogenannte „Bots“ oder automatisierte Programme zum Einsatz, die in Sekunden 
+          Tausende Versuche durchführen können.
+        </p>
+        <p>
+          Besonders betroffen sind schwache oder häufig genutzte Passwörter wie „123456“ oder „firma2023“. 
+          Angreifer nutzen oft auch Listen mit Millionen bekannten Passwörtern, die aus früheren Datenlecks stammen.
+        </p>
+
+        <h3 class="fs-5 fw-bold mt-4">Wie funktioniert ein Brute-Force-Angriff?</h3>
+        <ul>
+          <li><strong>Angreifer kennt den Benutzernamen</strong> (z. B. eine E-Mail-Adresse).</li>
+          <li><strong>Ein Programm testet automatisch viele Passwörter</strong>, von einfachen Varianten bis hin zu langen Kombinationen.</li>
+          <li><strong>Ohne Schutzmaßnahmen</strong> kann das richtige Passwort in wenigen Minuten erraten werden.</li>
+        </ul>
+        <p>
+          Besonders anfällig sind Web-Logins, E-Mail-Konten, Remote-Desktop-Verbindungen oder 
+          schlecht geschützte Systeme wie Router oder IoT-Geräte.
+        </p>
+
+        <h3 class="fs-5 fw-bold mt-4">Warum ist das für KMU relevant?</h3>
+        <ul>
+          <li>KMU nutzen oft einfache Passwörter oder wiederholen diese über verschiedene Konten hinweg.</li>
+          <li>Viele Mitarbeitende verwenden private E-Mail-Adressen oder Passwörter auch im Beruf.</li>
+          <li>Automatisierte Brute-Force-Angriffe zielen systematisch auf Login-Seiten von Webshops, Mailservern oder Cloud-Diensten.</li>
+        </ul>
+        <p>
+          Schon ein einziges kompromittiertes Konto kann zu Datendiebstahl, Systemübernahme oder Betrug führen.
+        </p>
+
+        <h3 class="fs-5 fw-bold mt-4">Woran erkennt man einen Brute-Force-Versuch?</h3>
+        <ul>
+          <li>Viele fehlgeschlagene Loginversuche in kurzer Zeit</li>
+          <li>Ungewöhnliche Uhrzeiten für Loginversuche (z. B. nachts oder aus dem Ausland)</li>
+          <li>Beschwerden über gesperrte Konten oder verdächtige Aktivität</li>
+        </ul>
+        <p>
+          Moderne Systeme sollten solche Muster erkennen, aber viele KMU nutzen keine passenden Tools.
+        </p>
+
+        <h3 class="fs-5 fw-bold mt-4">Wie kann man sich schützen?</h3>
+        <ul>
+          <li><strong>Starke Passwörter:</strong> Mindestens 12 Zeichen, Groß-/Kleinschreibung, Zahlen und Sonderzeichen.</li>
+          <li><strong>Multi-Faktor-Authentifizierung (MFA):</strong> Selbst wenn das Passwort erraten wird, der Zugriff bleibt blockiert.</li>
+          <li><strong>Login-Versuche begrenzen:</strong> Nach 5 Fehlversuchen automatisch sperren oder verzögern.</li>
+          <li><strong>Captcha verwenden:</strong> Erschwert automatisierte Anfragen (z. B. „Ich bin kein Roboter“-Tests).</li>
+          <li><strong>IP-Überwachung:</strong> Verdächtige oder häufige Zugriffe blockieren oder melden.</li>
+        </ul>
+
+        <h3 class="fs-5 fw-bold mt-4">Fazit für KMU</h3>
+        <p>
+          Brute-Force-Angriffe sind technisch einfach und weit verbreitet, aber auch gut zu verhindern. 
+          Mit sicheren Passwörtern, zusätzlicher Anmeldung (MFA) und einfachen Schutzmechanismen können 
+          KMU das Risiko stark reduzieren, ohne große Investitionen.
+        </p>
+        <p class="text-muted small"><em>References: </em></p>
+<ol>
+  <li>Kaspersky (o. D.) <em>Was ist eine Brute-Force-Attacke?</em>, Kaspersky Resource Center. Verfügbar unter: https://www.kaspersky.de/resource-center/definitions/brute-force-attack (Zugegriffen: 22. Juli 2025).</li>
+  
+  <li>Malwarebytes (o. D.) <em>Brute-Force-Angriff</em>, Malwarebytes Cybersecurity Basics. Verfügbar unter: https://www.malwarebytes.com/de/cybersecurity/basics/brute-force-attack (Zugegriffen: 22. Juli 2025).</li>
+  
+  <li>Bundesamt für Sicherheit in der Informationstechnik (BSI) (o. D.) <em>Sichere Passwörter erstellen</em>, BSI. Verfügbar unter: https://www.bsi.bund.de/DE/Themen/Verbraucherinnen-und-Verbraucher/Informationen-und-Empfehlungen/Cyber-Sicherheitsempfehlungen/Accountschutz/Sichere-Passwoerter-erstellen/sichere-passwoerter-erstellen_node.html (Zugegriffen: 22. Juli 2025).</li>
+  
+  <li>Bundesamt für Sicherheit in der Informationstechnik (BSI) (o. D.) <em>Accountschutz: So schützen Sie Ihre Benutzerkonten</em>, BSI. Verfügbar unter: https://www.bsi.bund.de/DE/Themen/Verbraucherinnen-und-Verbraucher/Informationen-und-Empfehlungen/Cyber-Sicherheitsempfehlungen/Accountschutz/accountschutz_node.html (Zugegriffen: 22. Juli 2025).</li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="accordion mb-3" id="accordionItem3">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="heading3">
+      <button class="accordion-button collapsed fs-4 fw-bold text-dark"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapse3"
+              aria-expanded="false"
+              aria-controls="collapse3">
+        Privilege Escalation
+      </button>
+    </h2>
+    <div id="collapse3"
+         class="accordion-collapse collapse"
+         aria-labelledby="heading3">
+      <div class="accordion-body p-4 bg-light border rounded shadow-lg">
+        <h3 class="fs-5 fw-bold">Was bedeutet „Privilege Escalation“?</h3>
+        <p>
+          „Privilege Escalation“ bedeutet auf Deutsch: Rechteausweitung. Dabei verschafft sich ein Angreifer Zugriff auf höhere Benutzerrechte,
+          zum Beispiel von einem normalen Mitarbeitendenkonto zu einem Administrator-Zugang. 
+          Das Ziel: Zugriff auf mehr Daten, Systeme oder sensible Funktionen zu erlangen, für die der Angreifer ursprünglich keine Berechtigung hatte.
+        </p>
+
+        <h3 class="fs-5 fw-bold mt-4">Wie läuft eine Rechteausweitung ab?</h3>
+        <p>Meist geschieht sie in zwei Schritten:</p>
+        <ol>
+          <li><strong>Zugriff erlangen:</strong> Der Angreifer nutzt Phishing, Brute-Force oder Malware, um in ein normales Benutzerkonto zu gelangen.</li>
+          <li><strong>Rechte ausweiten:</strong> Durch Schwachstellen im System, ungeschützte Einstellungen oder Fehlkonfigurationen wird der Zugang auf ein Konto mit mehr Rechten erweitert.</li>
+        </ol>
+        <p>
+          Das kann intern passieren (durch unachtsame Mitarbeitende) oder extern durch Angreifer, die sich durch das System „hocharbeiten“.
+        </p>
+
+        <h3 class="fs-5 fw-bold mt-4">Warum ist das für KMU gefährlich?</h3>
+        <ul>
+          <li>Angreifer mit Administratorrechten können <strong>alle Daten einsehen, verändern oder löschen</strong>.</li>
+          <li>Sie können <strong>weitere Konten anlegen</strong>, Backdoors einbauen oder Sicherheitsfunktionen ausschalten.</li>
+          <li>Viele KMU setzen nur ein einzelnes Admin-Konto ein, ein einzelner Fehler reicht für den Totalverlust.</li>
+        </ul>
+        <p>
+          Besonders riskant wird es, wenn auch Drittanbieter-Zugänge (z. B. über Fernwartung oder Cloud-Dienste) betroffen sind.
+        </p>
+
+        <h3 class="fs-5 fw-bold mt-4">Typische Wege zur Rechteausweitung</h3>
+        <ul>
+          <li><strong>Schwachstellen im Betriebssystem</strong> oder in Software (nicht gepatcht)</li>
+          <li><strong>Fehlkonfigurierte Benutzerrechte</strong> – z. B. alle Nutzer haben Adminrechte</li>
+          <li><strong>Hinterlegte Passwörter in Skripten</strong> oder Tools, die im Klartext gespeichert sind</li>
+          <li><strong>Offene Dienste</strong>, die mit hohen Rechten laufen (z. B. Datenbanken oder Fernzugänge)</li>
+        </ul>
+
+        <h3 class="fs-5 fw-bold mt-4">Wie kann man sich als KMU schützen?</h3>
+        <ul>
+          <li><strong>Prinzip der minimalen Rechte:</strong> Jeder Mitarbeitende bekommt nur die Berechtigungen, die er wirklich benötigt.</li>
+          <li><strong>Mehrere Benutzerrollen:</strong> Trennung zwischen normalen Nutzern, IT, Admins, Externen usw.</li>
+          <li><strong>Updates & Patches:</strong> Regelmäßige Aktualisierung von Systemen und Programmen schließt bekannte Lücken.</li>
+          <li><strong>Zugriffsprotokolle aktivieren:</strong> Verdächtige Aktivitäten frühzeitig erkennen – z. B. wer hat wann was geändert?</li>
+          <li><strong>Multi-Faktor-Authentifizierung (MFA):</strong> Schutz selbst dann, wenn Zugangsdaten gestohlen wurden.</li>
+          <li><strong>Starke Passwort-Policy:</strong> Lange, einzigartige Passwörter, kein „admin123“ mehr!</li>
+        </ul>
+
+        <h3 class="fs-5 fw-bold mt-4">Fazit für KMU</h3>
+        <p>
+          Privilege Escalation ist eine unterschätzte Gefahr, denn oft genügt ein kleiner Fehler, damit ein einfacher Angriff zum vollständigen Kontrollverlust führt. 
+          Gute Rechteverwaltung, regelmäßige Schulung und ein gesundes Maß an Misstrauen im Systemdesign schützen Ihr Unternehmen effektiv.
+        </p>
+        <p class="text-muted small"><em>References: </em></p>
+<ol>
+  <li>Legit Security (o. D.) <em>What is Privilege Escalation?</em>, Legit Security Knowledge Base. Verfügbar unter: https://www.legitsecurity.com/aspm-knowledge-base/what-is-privilege-escalation (Zugegriffen: 22. Juli 2025).</li>
+  
+  <li>BeyondTrust (o. D.) <em>Privilege Escalation Attack & Defense Explained</em>, BeyondTrust Blog. Verfügbar unter: https://www.beyondtrust.com/blog/entry/privilege-escalation-attack-defense-explained (Zugegriffen: 22. Juli 2025).</li>
+  
+  <li>OWASP (o. D.) <em>Testing for Privilege Escalation</em>, OWASP Web Security Testing Guide. Verfügbar unter: https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/05-Authorization_Testing/03-Testing_for_Privilege_Escalation (Zugegriffen: 22. Juli 2025).</li>
+  
+  <li>PortSwigger (o. D.) <em>Access control vulnerabilities and privilege escalation</em>, PortSwigger Web Security Academy. Verfügbar unter: https://portswigger.net/web-security/access-control (Zugegriffen: 22. Juli 2025).</li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a href="{{url_for('quizbekoid')}}"><button type="button" class="btn btn-primary btn-lg" style="background-color: #007bff; color: white;">Quiz</button></a>
+
+{% endblock %}
+
+       

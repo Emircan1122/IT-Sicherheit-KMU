@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% import "bootstrap/form.html" as wtf %}
+{% block title %}Startseite{% endblock %}
+{% block content %}
+<div class="container">
+    <h2 class="my-4">Web Quiz</h2>
+
+    <form method="POST" action="/quizweb">
+        {{ form.hidden_tag() }}
+        
+        <div class="card mb-4">
+            <div class="card-body">
+                {{ wtf.render_field(form.web1) }}
+                {{ wtf.render_field(form.web2) }}
+                {{ wtf.render_field(form.web3) }}
+                {{ wtf.render_field(form.web4) }}
+                {{ wtf.render_field(form.web5) }}
+                {{ wtf.render_field(form.web6) }}
+                {{ wtf.render_field(form.web7) }}
+                {{ wtf.render_field(form.web8) }}
+                {{ wtf.render_field(form.web9) }}
+                {{ wtf.render_field(form.web10) }}
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">
+                ← Zurück zur Startseite
+            </a>
+            <button type="submit" class="btn btn-success">
+                {{ form.submit.label.text }} →
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

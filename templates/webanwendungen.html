@@ -1,0 +1,270 @@
+{% extends "base.html" %}
+{% block title %}Startseite{% endblock %}
+{% block content %}
+
+<div class="text-center mb-5">
+    <h3 class="fw-bold text-dark display-">Angriffe auf Webanwendungen</h3>
+    <p></p>
+    <p class="lead text-dark fs-7">
+        Webanwendungen bilden oft das digitale Rückgrat kleiner und mittlerer Unternehmen - sei es in Form von Websites, Kundenportalen oder Online-Shops. Gerade weil sie öffentlich zugänglich sind, stellen sie ein beliebtes Ziel für Cyberangriffe dar.
+        In diesem Abschnitt erklären wir, wie Angreifer Sicherheitslücken in Webanwendungen ausnutzen, etwa um an sensible Daten zu gelangen, die Anwendung zu manipulieren oder Schaden im Unternehmen zu verursachen. Wir zeigen typische Angriffsmethoden wie SQL-Injection, Cross-Site Scripting (XSS) oder Directory Traversal – und vor allem, wie man sich effektiv davor schützen kann.
+        Technisches Vorwissen ist nicht erforderlich - wir erklären alle Begriffe verständlich und praxisnah. Am Ende können Sie Ihr Wissen mit einem kurzen Quiz überprüfen.
+    </p>
+</div>
+
+<div class="accordion mb-3" id="accordionItem1">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="heading1">
+      <button class="accordion-button collapsed fs-4 fw-bold text-dark"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapse1"
+              aria-expanded="false"
+              aria-controls="collapse1">
+        SQL-Injection – Schwachstelle mit großem Risiko
+      </button>
+    </h2>
+    <div id="collapse1"
+         class="accordion-collapse collapse"
+         aria-labelledby="heading1">
+      <div class="accordion-body p-4 bg-light border rounded shadow-lg">
+
+        <h5 class="fw-bold">Was ist eine SQL-Injection?</h5>
+        <p>
+          Eine SQL-Injection (SQLi) ist ein Angriffsvektor auf Webanwendungen, bei dem schädlicher Code in SQL-Abfragen eingeschleust wird. Angreifer manipulieren Benutzereingaben so, dass diese direkt in die Datenbankabfrage eingefügt werden – etwa um Authentifizierung zu umgehen, Daten auszulesen oder sogar vollständigen Zugriff auf Systeme zu erlangen.
+        </p>
+
+        <h5 class="fw-bold mt-4">Beispiel eines SQLi-Angriffs</h5>
+        <p>
+          Ein klassisches Beispiel ist die Eingabe von <code>' OR 1=1 --</code> in ein Login-Feld. Dadurch wird die Bedingung der SQL-Abfrage immer „wahr“, und der Angreifer erhält Zugriff – ohne gültige Anmeldedaten. Dieses einfache Muster kann katastrophale Folgen haben.
+        </p>
+
+        <h5 class="fw-bold mt-4">Arten von SQL-Injections</h5>
+        <ul>
+          <li><strong>Authentication Bypass</strong> – Zugriff ohne gültige Zugangsdaten</li>
+          <li><strong>Classic SQLi</strong> – Standard-SQL-Manipulation via Parameter</li>
+          <li><strong>Blind SQLi</strong> – keine sichtbaren Fehler, aber steuerbar über Reaktionszeiten oder Logik</li>
+          <li><strong>Denial of Service</strong> – Serverüberlastung durch aufwendige SQL-Befehle</li>
+          <li><strong>Remote Code Execution</strong> – Einschleusung und Ausführung externer Befehle über SQL</li>
+        </ul>
+
+        <h5 class="fw-bold mt-4">Warum ist SQLi so gefährlich für KMU?</h5>
+        <p>
+          Laut MITRE zählt SQLi zu den Top-3 der gefährlichsten Schwachstellen (CWE Top 25). Besonders kleine Unternehmen sind betroffen, da SQLi oft durch unsichere Formulare, fehlerhafte Validierung oder veraltete Systeme ermöglicht wird. Die Folgen: Datenverlust, DSGVO-Verstöße, Erpressung und Imageschäden.
+        </p>
+
+        <h5 class="fw-bold mt-4">Moderne Angriffsmethoden & Trends</h5>
+        <p>
+          Angreifer nutzen nicht mehr nur Formulare. Auch HTTP-Header (z. B. User-Agent, Cookies) oder DNS-Requests werden manipuliert. Tools wie <strong>SQLMap</strong> automatisieren diese Prozesse. Komplexe Angriffe kombinieren SQLi mit DNS-Hijacking, RCE oder DDoS.
+        </p>
+
+        <h5 class="fw-bold mt-4">Lösungsansatz im Paper: SQLR34P3R</h5>
+        <p>
+          Die Autoren stellen eine umfassende Lösung vor, die <strong>mehrschichtig</strong> gegen SQLi wirkt:
+        </p>
+        <ul>
+          <li><strong>Multisource Detection:</strong> Auswertung von HTTP-Body, URL, Headern & Netzwerkverkehr</li>
+          <li><strong>Multiclass Classification:</strong> Erkennung & Zuordnung spezifischer Angriffsarten</li>
+          <li><strong>Priorisierung durch CVSS/EPSS/EE:</strong> Risikobewertung zur gezielten Schwachstellenbehebung</li>
+          <li><strong>Echtzeitprävention:</strong> Angriffserkennung und automatische Reaktion im Netzwerk</li>
+        </ul>
+
+        <h5 class="fw-bold mt-4">Wie kann man sich effektiv schützen?</h5>
+        <ul>
+          <li><strong>Prepared Statements / Parametrisierte Abfragen:</strong> Keine direkte Verarbeitung von Benutzereingaben im SQL-Query</li>
+          <li><strong>Whitelist-Validierung:</strong> Nur erwartete Eingabeformate erlauben</li>
+          <li><strong>Rechtevergabe einschränken:</strong> DB-Nutzer sollten keine DROP- oder EXEC-Rechte haben</li>
+          <li><strong>Monitoring & Logging:</strong> Überwachung von SQL-Befehlen, Anomalie-Erkennung</li>
+          <li><strong>Web Application Firewalls (WAF):</strong> Blockieren verdächtiger Eingaben auf Anwendungsebene</li>
+        </ul>
+        <p class="text-muted small"><em>References: </em></p>
+<ol>
+  <li>Khan, M.S., Khan, M.T., Asif, M., Imran, M. and Shoaib, M. (2024) <em>A novel approach to SQL injection attack detection using feature engineering and deep learning</em>, ScienceDirect. Verfügbar unter: https://www.sciencedirect.com/science/article/pii/S221421262400173X (Zugegriffen: 22. Juli 2025).</li>
+  
+  <li>OWASP (2021) <em>OWASP Top Ten</em>, OWASP Foundation. Verfügbar unter: https://owasp.org/www-project-top-ten/ (Zugegriffen: 22. Juli 2025).</li>
+  
+  <li>Mohammed, R.A. and Abdulazeez, A.M. (2021) <em>A systematic review of detection and prevention techniques of SQL injection attacks</em>, ResearchGate. Verfügbar unter: https://www.researchgate.net/publication/355682433_A_systematic_review_of_detection_and_prevention_techniques_of_SQL_injection_attacks (Zugegriffen: 22. Juli 2025).</li>
+</ol>
+
+        <a href="https://www.datacamp.com/de/tutorial/sql-injection" target="_blank">
+          <button type="button" class="btn btn-primary btn-lg">
+            Mehr dazu (DataCamp Tutorial)
+          </button>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="accordion mb-3" id="accordionItem2">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="heading2">
+      <button class="accordion-button collapsed fs-4 fw-bold text-dark"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapse2"
+              aria-expanded="false"
+              aria-controls="collapse2">
+        Cross-Site Scripting (XSS)
+      </button>
+    </h2>
+    <div id="collapse2"
+         class="accordion-collapse collapse"
+         aria-labelledby="heading2">
+      <div class="accordion-body p-4 bg-light border rounded shadow-lg">
+        <h3 class="fs-5 fw-bold">Was ist Cross-Site Scripting (XSS)?</h3>
+        <p>
+          Cross-Site Scripting – kurz XSS – ist eine Sicherheitslücke auf Webseiten. 
+          Angreifer nutzen sie, um über Formulare oder Links eigene, schädliche Inhalte einzuschleusen. 
+          Das passiert meist mit sogenannten Skripten, also kleinen Befehlen, die im Webbrowser ausgeführt werden.
+        </p>
+        <p>
+          Wenn das gelingt, können Hacker z. B.:
+          <ul>
+            <li>an persönliche Daten Ihrer Kunden gelangen,</li>
+            <li>Sitzungen übernehmen (z. B. im Online-Shop),</li>
+            <li>Ihre Website zum Verteilen von Schadsoftware missbrauchen.</li>
+          </ul>
+        </p>
+
+        <h3 class="fs-5 fw-bold mt-4">Welche Arten von XSS gibt es?</h3>
+        <p>Es gibt verschiedene Formen von XSS – hier die wichtigsten:</p>
+        <ul>
+          <li><strong>Gespeicherte Angriffe (Stored XSS):</strong> Der schädliche Code wird dauerhaft auf der Website gespeichert, z. B. in einem Gästebuch oder Kontaktformular.</li>
+          <li><strong>Reflektierte Angriffe (Reflected XSS):</strong> Der Angriff funktioniert über einen Link – sobald jemand darauf klickt, wird der Code im Browser ausgeführt.</li>
+          <li><strong>Moderne Varianten:</strong> Manche Angriffe zielen direkt auf den Webbrowser ab und sind für Schutzsysteme schwer zu erkennen.</li>
+        </ul>
+
+        <h3 class="fs-5 fw-bold mt-4">Warum ist das für KMU wichtig?</h3>
+        <p>
+          XSS gehört zu den häufigsten Schwachstellen bei Webseiten – auch bei kleinen Unternehmen. 
+          Gerade wenn Sie Kontaktformulare, Login-Funktionen oder Kommentarfelder haben, sind Sie potenziell gefährdet.
+        </p>
+        <p>
+          Oft sind es automatische Programme („Bots“), die das Internet nach solchen Lücken durchsuchen. 
+          Betroffen waren in der Vergangenheit auch große Namen wie Facebook, Google oder eBay.
+        </p>
+
+        <h3 class="fs-5 fw-bold mt-4">Was können Sie als KMU dagegen tun?</h3>
+        <p>Zum Schutz Ihrer Website gibt es einfache, aber wirkungsvolle Maßnahmen:</p>
+        <ul>
+          <li><strong>Formulare absichern:</strong> Stellen Sie sicher, dass Nutzereingaben geprüft werden, bevor sie weiterverarbeitet oder angezeigt werden.</li>
+          <li><strong>Schädliche Zeichen blockieren:</strong> Gewisse Zeichen (wie <code>&lt;</code>, <code>&gt;</code>, <code>&</code>) sollten automatisch umgewandelt werden, um Angriffe zu verhindern.</li>
+          <li><strong>Vertrauenswürdige Quellen festlegen:</strong> Mit einer sogenannten <em>Content Security Policy</em> können Sie festlegen, von wo aus Inhalte geladen werden dürfen.</li>
+          <li><strong>Nur erlaubte Inhalte zulassen:</strong> Nutzen Sie sogenannte „Sanitizer“-Tools, die Eingaben automatisch bereinigen.</li>
+        </ul>
+
+        <h3 class="fs-5 fw-bold mt-4">Zusätzliche Empfehlungen für Ihre IT-Sicherheit</h3>
+        <ul>
+          <li>Lassen Sie Ihre Website regelmäßig auf Sicherheitslücken prüfen.</li>
+          <li>Arbeiten Sie mit professionellen Webentwicklern oder IT-Dienstleistern zusammen.</li>
+          <li>Schulen Sie Mitarbeitende im Umgang mit E-Mails, Links und Formularen.</li>
+          <li>Nutzen Sie aktuelle Software und halten Sie Ihre Systeme auf dem neuesten Stand.</li>
+        </ul>
+        <p>
+          XSS-Angriffe können mit wenig Aufwand viel Schaden anrichten – aber auch mit einfachen Mitteln verhindert werden. 
+          Besonders für KMU lohnt es sich, hier bewusst und sicher zu handeln.
+        </p>
+        <p class="text-muted small"><em>References: </em></p>
+<ol>
+  <li>Alzoabi, A., Alhaija, F.A. und Al-Kadi, O. (2022) <em>A Review of Cross-Site Scripting (XSS) Attack: Intelligent Detection and Prevention Approaches</em>, SCIRP. Verfügbar unter: https://www.scirp.org/pdf/ijcns_2022080815464215.pdf (Zugegriffen: 22. Juli 2025).</li>
+  
+  <li>Upadhyay, V., Patel, D. und Patoliya, J. (2022) <em>Exploring Cross-Site Scripting (XSS) Attack Payloads, Prevention and Mitigation Techniques</em>, ResearchGate. Verfügbar unter: https://www.researchgate.net/publication/360400563_Exploring_Cross-Site_Scripting_XSS_Attack_Payloads_Prevention_and_Mitigation_Techniques (Zugegriffen: 22. Juli 2025).</li>
+  
+  <li>Gupta, P.K., Gupta, S. und Singh, S. (2022) <em>A Survey on Detection and Prevention of Cross-Site Scripting Attack</em>, SCIRP. Verfügbar unter: https://www.scirp.org/journal/paperinformation?paperid=119069 (Zugegriffen: 22. Juli 2025).</li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="accordion mb-3" id="accordionItem3">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="heading3">
+      <button class="accordion-button collapsed fs-4 fw-bold text-dark"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapse3"
+              aria-expanded="false"
+              aria-controls="collapse3">
+        Directory Traversal
+      </button>
+    </h2>
+    <div id="collapse3"
+         class="accordion-collapse collapse"
+         aria-labelledby="heading3">
+      <div class="accordion-body p-4 bg-light border rounded shadow-lg">
+        <h3 class="fs-5 fw-bold">Was ist ein Directory Traversal Angriff?</h3>
+        <p>
+          Ein Directory Traversal Angriff (auch „Path Traversal“ genannt) nutzt eine Schwachstelle in der Art aus, 
+          wie eine Anwendung auf Dateien zugreift. Ein Angreifer kann so auf Dateien außerhalb des erlaubten Bereichs zugreifen – 
+          etwa Konfigurationsdateien, Benutzerpasswörter oder interne Dokumente.
+        </p>
+        <p>
+          Beispiel: Ein Formular fragt nach dem Namen einer Datei, die angezeigt werden soll. Anstatt „rechnung.pdf“ gibt ein Angreifer
+          etwas wie <code>../etc/passwd</code> ein – ein Verweis auf eine sensible Systemdatei. Wenn die Anwendung diese Eingabe
+          ungeprüft verarbeitet, erhält der Angreifer Zugriff auf Daten, die niemals öffentlich zugänglich sein sollten.
+        </p>
+
+        <h3 class="fs-5 fw-bold mt-4">Wie funktionieren diese Angriffe technisch?</h3>
+        <p>
+          In Dateipfaden stehen die Zeichen <code>..</code> für das übergeordnete Verzeichnis. 
+          Gibt man z. B. <code>../../geheim.txt</code> ein, springt das System zwei Ordner nach oben 
+          und sucht dort die Datei <code>geheim.txt</code>. Werden solche Eingaben nicht überprüft, 
+          kann ein Angreifer aus geschützten Verzeichnissen „herausspringen“ und unerlaubte Dateien lesen oder löschen.
+        </p>
+
+        <h3 class="fs-5 fw-bold mt-4">Warum ist das für KMU relevant?</h3>
+        <p>
+          Viele kleine Unternehmen nutzen einfache Webanwendungen, z. B. um Dokumente anzuzeigen oder herunterzuladen. 
+          Wenn solche Anwendungen Benutzereingaben direkt als Dateinamen verwenden (z. B. über eine URL), besteht großes Risiko. 
+          Cyberkriminelle könnten dadurch auf sensible Dateien zugreifen – ohne sich einzuloggen.
+        </p>
+        <p>
+          Besonders riskant wird es, wenn die Anwendung mit hohen Rechten (z. B. Administratorrechten) läuft – dann könnten
+          sogar Systemdateien kompromittiert werden.
+        </p>
+
+        <h3 class="fs-5 fw-bold mt-4">Wie kann man sich schützen?</h3>
+        <p>Diese Maßnahmen helfen dabei, Directory Traversal zu verhindern:</p>
+        <ul>
+          <li><strong>Nur erlaubte Zeichen zulassen:</strong> Dateinamen sollten nur aus Buchstaben und Zahlen bestehen. Alles andere wird blockiert.</li>
+          <li><strong>Pfadangaben bereinigen:</strong> Sonderzeichen wie <code>..</code> oder <code>/</code> sollten automatisch entfernt werden.</li>
+          <li><strong>Verzeichnisse fest vorgeben:</strong> Der Zugriff darf nur auf einen bestimmten Ordner erfolgen – nie auf das gesamte System.</li>
+          <li><strong>„Canonical Paths“ verwenden:</strong> Das sind eindeutig aufgelöste Pfade, bei denen keine Tricks mit „..“ mehr funktionieren.</li>
+          <li><strong>Rechte einschränken:</strong> Der Webserver oder die Anwendung sollte nur auf die nötigsten Dateien zugreifen dürfen – nie mit Administratorrechten.</li>
+        </ul>
+        <p>
+          Vermeiden Sie es möglichst ganz, Dateipfade aus Benutzereingaben zusammenzusetzen. Wenn es notwendig ist, 
+          dann nur mit strengen Prüfungen und standardisierten Funktionen.
+        </p>
+
+        <h3 class="fs-5 fw-bold mt-4">Zusammenfassung für KMU</h3>
+        <ul>
+          <li>Nutzen Sie sichere Programmierpraktiken oder CMS-Plugins mit aktiven Schutzmechanismen.</li>
+          <li>Lassen Sie Benutzereingaben niemals ungeprüft in Dateipfade einfließen.</li>
+          <li>Führen Sie regelmäßige Sicherheitstests durch oder lassen Sie diese durchführen.</li>
+        </ul>
+        <p>
+          Schon eine einfache Eingabe wie <code>../../</code> kann zum Sicherheitsrisiko werden. 
+          Der Aufwand für Schutzmaßnahmen ist gering – der mögliche Schaden dagegen hoch.
+        </p>
+        <p class="text-muted small"><em>References: </em></p>
+<ol>
+  <li>University of Wisconsin-Madison (o. D.) <em>Directory Traversal</em>, Department of Computer Sciences. Verfügbar unter: https://research.cs.wisc.edu/mist/SoftwareSecurityCourse/Chapters/3_3-Directory-Traversal.pdf (Zugegriffen: 22. Juli 2025).</li>
+  
+  <li>Rukhmode, S.A. und Kulkarni, R.V. (2021) <em>Deep Dive into Directory Traversal and File Inclusion Attacks leads to Privilege Escalation</em>, ResearchGate. Verfügbar unter: https://www.researchgate.net/publication/352390325_Deep_Dive_into_Directory_Traversal_and_File_Inclusion_Attacks_leads_to_Privilege_Escalation (Zugegriffen: 22. Juli 2025).</li>
+  
+  <li>OWASP (o. D.) <em>Path Traversal</em>, OWASP Foundation. Verfügbar unter: https://owasp.org/www-community/attacks/Path_Traversal (Zugegriffen: 22. Juli 2025).</li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a href="{{url_for('quizweb')}}"><button type="button" class="btn btn-primary btn-lg" style="background-color: #007bff; color: white;">Web Quiz</button></a>
+
+{% endblock %}
+
+       

@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+{% block title %}Startseite{% endblock %}
+{% block content %}
+
+<div class="text-center mb-5">
+    <h3 class="fw-bold text-dark display-">Soziale Angriffe (Social Engineering)</h3>
+    <p></p>
+    <p class="lead text-dark fs-7">
+        Nicht nur Technik wird angegriffen, auch der Mensch ist ein beliebtes Ziel für Cyberkriminelle. Soziale Angriffe wie Phishing, Spear Phishing oder Pretexting zielen darauf ab, Vertrauen auszunutzen, um an sensible Informationen zu gelangen oder Zugriff auf Systeme zu erlangen. Oft reicht eine einzige gut gemachte E-Mail, um großen Schaden anzurichten.
+        Gerade kleine und mittlere Unternehmen sind gefährdet, weil Mitarbeitende selten speziell geschult sind und Angriffe oft täuschend echt wirken, sei es eine gefälschte Nachricht vom Chef, eine vermeintliche Paketbenachrichtigung oder ein gefälschter Anruf vom IT-Support.
+        In diesem Abschnitt erklären wir, wie soziale Angriffe ablaufen, welche psychologischen Tricks dabei eingesetzt werden und woran man betrügerische Nachrichten erkennt. Wir geben konkrete Tipps, wie Sie und Ihr Team sich schützen können, etwa durch gesunden Menschenverstand, technische Schutzmechanismen und klare interne Prozesse.
+        Technisches Vorwissen brauchen Sie nicht, wir erklären alle Begriffe verständlich und mit vielen Praxisbeispielen. Am Ende wartet ein kurzes Quiz, mit dem Sie Ihr Wissen testen können.
+    </p>
+</div>
+
+<div class="accordion mb-3" id="accordionItem1">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="heading1">
+      <button class="accordion-button collapsed fs-4 fw-bold text-dark"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapse1"
+              aria-expanded="false"
+              aria-controls="collapse1">
+        Phishing
+      </button>
+    </h2>
+    <div id="collapse1"
+         class="accordion-collapse collapse"
+         aria-labelledby="heading1">
+      <div class="accordion-body p-4 bg-light border rounded shadow-lg">
+        <h3 class="fs-5 fw-bold">Was ist Phishing?</h3>
+        <p>
+          Phishing ist eine Methode, bei der Kriminelle versuchen, mithilfe gefälschter E-Mails, Webseiten oder Nachrichten an
+          vertrauliche Daten wie Passwörter, Zahlungsinformationen oder persönliche Daten zu gelangen. Die Angreifer geben
+          sich dabei als vertrauenswürdige Unternehmen (z. B. Banken, Behörden, Lieferdienste) aus und erzeugen so trügerisches Vertrauen.
+        </p>
+        
+        <h3 class="fs-5 fw-bold mt-4">Wie läuft ein Phishing-Angriff ab?</h3>
+        <ol>
+          <li><strong>Planung:</strong> Der Täter sammelt Informationen über das Ziel, z. B. Name, Firma oder E-Mail-Adresse.</li>
+          <li><strong>Köderphase:</strong> Die gefälschte Nachricht wird versendet (z. B. E-Mail mit Link oder Anhang).</li>
+          <li><strong>Hakenphase:</strong> Opfer klicken auf Link oder öffnen Anhang und geben Daten ein oder infizieren sich.</li>
+          <li><strong>Ausbeuten:</strong> Die erbeuteten Daten werden missbraucht, z. B. für Bankbetrug oder Identitätsdiebstahl.</li>
+          <li><strong>Bedecken:</strong> Der Angreifer löscht Spuren und nutzt die erlangten Daten weiter.</li>
+        </ol>
+        
+        <h3 class="fs-5 fw-bold mt-4">Warum betrifft das KMU?</h3>
+        <ul>
+          <li>KMU sind gezielte Opfer, da ihre Sicherheitssysteme oft weniger umfassend sind.</li>
+          <li>Ein erfolgreicher Phishing-Angriff kann zu großen finanziellen Schäden, Verlust sensibler Daten oder Rufschädigung führen.</li>
+          <li>Der Schaden entsteht oft unbemerkt, bevor jemand den Missbrauch bemerkt.</li>
+        </ul>
+        
+        <h3 class="fs-5 fw-bold mt-4">Typische Tricks der Phisher</h3>
+        <ul>
+          <li>Gefälschte Absenderadresse, z. B. mit veränderten Zeichen (Paypa1 statt Paypal).</li>
+          <li>Dringlichkeit suggerieren („Ihr Konto wird gesperrt!“).</li>
+          <li>Spear-Phishing: persönlich zugeschnitten, oft mit Namen und Details der Firma.</li>
+          <li>Smishing/Vishing: Phishing via SMS oder Telefonanruf.</li>
+        </ul>
+        
+        <h3 class="fs-5 fw-bold mt-4">Schutzmaßnahmen für KMU</h3>
+        <ul>
+          <li><strong>Schulung:</strong> Alle Mitarbeitenden im Erkennen von Phishing trainieren (z. B. E-Mail-Adressen prüfen, keine Anhänge öffnen).</li>
+          <li><strong>Simulationen:</strong> Regelmäßige Test‑E-Mails, um das Erlernte zu festigen.</li>
+          <li><strong>Technische Schutzmittel:</strong> E-Mail-Filter, Spam‑Scanner, Linkschecks.</li>
+          <li><strong>Meldesystem:</strong> Verdächtige E-Mails direkt an IT melden, Schutz für alle.</li>
+          <li><strong>Multi-Faktor-Authentifizierung:</strong> Auch wenn Zugangsdaten geklaut werden, bleibt ein zusätzlicher Schutz.</li>
+        </ul>
+        
+        <h3 class="fs-5 fw-bold mt-4">Kurz & Klar</h3>
+        <p>
+          Phishing ist weit verbreitet und wird immer raffinierter, aber mit der Kombination aus
+          <strong>Aufklärung, Tests und technischen Maßnahmen</strong> lässt sich das Risiko stark verringern. Besonders kleine Firmen
+          profitieren von einem einfachen, aber konsequenten Vorgehen.
+        </p>
+        <p class="text-muted small"><em>References: </em></p>
+<ol>
+  <li>Alsmadi, M.A. und Al-Kabi, Q. (2017) <em>Phishing - challenges and solutions</em>, ResearchGate. Verfügbar unter: https://www.researchgate.net/publication/322823383_Phishing_-_challenges_and_solutions (Zugegriffen: 22. Juli 2025).</li>
+  
+  <li>Thaher, S., Saad, S., Kasasbeh, R. und Al-Sarayreh, A. (2023) <em>Efficient phishing websites classification using deep learning models: A survey and experimental evaluation</em>, ScienceDirect. Verfügbar unter: https://www.sciencedirect.com/science/article/abs/pii/S095741742302701X (Zugegriffen: 22. Juli 2025).</li>
+  
+  <li>Bundesamt für Sicherheit in der Informationstechnik (BSI) (o. D.) <em>Spam, Phishing & Co</em>, BSI. Verfügbar unter: https://www.bsi.bund.de/DE/Themen/Verbraucherinnen-und-Verbraucher/Cyber-Sicherheitslage/Methoden-der-Cyber-Kriminalitaet/Spam-Phishing-Co/spam-phishing-co_node.html (Zugegriffen: 22. Juli 2025).</li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="accordion mb-3" id="accordionItem2">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="heading2">
+      <button class="accordion-button collapsed fs-4 fw-bold text-dark"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapse2"
+              aria-expanded="false"
+              aria-controls="collapse2">
+        Spear Phishing
+      </button>
+    </h2>
+    <div id="collapse2"
+         class="accordion-collapse collapse"
+         aria-labelledby="heading2">
+      <div class="accordion-body p-4 bg-light border rounded shadow-lg">
+        <h3 class="fs-5 fw-bold">Was ist Spear Phishing?</h3>
+        <p>
+          Spear Phishing ist eine besonders gezielte Form des Phishing, bei der Angreifer individuelle
+          Personen, Firmen oder ganze Abteilungen ins Visier nehmen. Im Unterschied zu typischem Phishing,
+          das massenhaft versendet wird, ist Spear Phishing sehr persönlich und basiert auf sorgfältiger Recherche,
+          z. B. über Social Media oder Unternehmensseiten. 
+        </p>
+
+        <h3 class="fs-5 fw-bold mt-4">Wie funktioniert ein Spear Phishing-Angriff?</h3>
+        <ol>
+          <li><strong>Recherchephase:</strong> Der Angreifer sammelt gezielt Informationen – Name, Rolle im Unternehmen, Kollegen usw.</li>
+          <li><strong>Vorbereitung:</strong> Es wird eine konstruktive, täuschend echte E-Mail gestaltet, mit Logos, Layout, Namen u. a.</li>
+          <li><strong>Angriff:</strong> Die E-Mail enthält Links oder Anhänge, die zur Preisgabe von Zugangsdaten oder zum Herunterladen von Malware verleiten. </li>
+          <li><strong>Ausnutzung:</strong> Die abgegriffenen Daten ermöglichen Zugriff auf Berechtigungen, Systeme oder finanzielle Ressourcen.</li>
+        </ol>
+
+        <h3 class="fs-5 fw-bold mt-4">Warum ist Spear Phishing gefährlich für KMU?</h3>
+        <ul>
+          <li>Es zielt oft auf Mitarbeitende mit Zugang zu sensiblen Daten wie Finanzen oder Personalakten.</li>
+          <li>KMU setzen mitunter weniger auf geprüfte E-Mail-Sicherheit oder Awareness-Schulungen, das erhöht das Risiko.</li>
+          <li>Sogar größere Unternehmen erwischte es – z. B. Yahoo, Ubiquiti, das zeigt: Niemand ist immun.</li>
+        </ul>
+
+        <h3 class="fs-5 fw-bold mt-4">Typische Merkmale von Spear Phishing-Mails</h3>
+        <ul>
+          <li>Persönliche Ansprache (Name, Rollenbezug, Firmendetails)</li>
+          <li>Einbezug echter Logos und Layouts – wirkt sehr authentisch</li>
+          <li>Erzeugung von Dringlichkeit („Bitte bis heute handeln!“)</li>
+          <li>Links, die täuschend echt erscheinen, aber zu gefälschten Seiten führen</li>
+        </ul>
+        <p>
+          Diese Merkmale machen es schwierig, Spear Phishing von echten Nachrichten zu unterscheiden. 
+        </p>
+
+        <h3 class="fs-5 fw-bold mt-4">Wie können sich KMU schützen?</h3>
+        <ul>
+          <li><strong>Schulung & Sensibilisierung:</strong> Regelmäßige Trainings für Mitarbeitende zur Erkennung personalisierter Betrugsversuche. </li>
+          <li><strong>Simulierte Angriffe:</strong> Test-E-Mails zeigen auf einfache Weise, wer besonders gefährdet ist. </li>
+          <li><strong>Technische Schutzmaßnahmen:</strong> Spamfilter, Linkscanner und Server-Absicherung sind sinnvoll. </li>
+          <li><strong>Prüfprozesse etablieren:</strong> Finanzvorgänge und Datenfreigaben sollten immer von mehreren Personen abgesegnet werden.</li>
+          <li><strong>MFA einsetzen:</strong> Wenn Passwörter gestohlen werden, verhindert zusätzliche Absicherung den Zugriff.</li>
+        </ul>
+
+        <h3 class="fs-5 fw-bold mt-4">Kurz & Klar</h3>
+        <p>
+          Spear Phishing ist eine React-zielgerichtete Gefahr, aber gerade darum
+          können KMU mit der richtigen Kombination aus *Aufklärung, Technik und Prozessen
+          deutlich sicherer werden. Ein paar einfache Schritte genügen, um Ihre Firma stark zu schützen.
+        </p>
+        <p class="text-muted small"><em>References: </em></p>
+<ol>
+  <li>Alsmadi, M.A. und Al-Kabi, Q. (2017) <em>Phishing - challenges and solutions</em>, ResearchGate. Verfügbar unter: https://www.researchgate.net/publication/322823383_Phishing_-_challenges_and_solutions (Zugegriffen: 22. Juli 2025).</li>
+  
+  <li>Thaher, S., Saad, S., Kasasbeh, R. und Al-Sarayreh, A. (2023) <em>Efficient phishing websites classification using deep learning models: A survey and experimental evaluation</em>, ScienceDirect. Verfügbar unter: https://www.sciencedirect.com/science/article/abs/pii/S095741742302701X (Zugegriffen: 22. Juli 2025).</li>
+  
+  <li>Bundesamt für Sicherheit in der Informationstechnik (BSI) (o. D.) <em>Spam, Phishing & Co</em>, BSI. Verfügbar unter: https://www.bsi.bund.de/DE/Themen/Verbraucherinnen-und-Verbraucher/Cyber-Sicherheitslage/Methoden-der-Cyber-Kriminalitaet/Spam-Phishing-Co/spam-phishing-co_node.html (Zugegriffen: 22. Juli 2025).</li>
+  
+  <li>Kaspersky (o. D.) <em>Was ist Spear-Phishing?</em>, Kaspersky Resource Center. Verfügbar unter: https://www.kaspersky.de/resource-center/definitions/spear-phishing (Zugegriffen: 22. Juli 2025).</li>
+  
+  <li>[ohne Autor] (2023) <em>Spear-Phishing: Gezielte Angriffe erkennen und abwehren</em>, Kanzlei Herfurtner. Verfügbar unter: https://kanzlei-herfurtner.de/spear-phishing/ (Zugegriffen: 22. Juli 2025).</li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a href="{{url_for('quizsoc')}}"><button type="button" class="btn btn-primary btn-lg" style="background-color: #007bff; color: white;">Quiz</button></a>
+{% endblock %}
+
+       

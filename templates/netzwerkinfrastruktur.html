@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+{% block title %}Startseite{% endblock %}
+{% block content %}
+
+<div class="text-center mb-5">
+    <h3 class="fw-bold text-dark display-">Netzwerkinfrastruktur-Angriffe</h3>
+    <p></p>
+    <p class="lead text-dark fs-7">
+        Ohne eine sichere Netzwerkinfrastruktur steht die gesamte IT eines Unternehmens auf wackligen Beinen. Angriffe auf Netzwerke, etwa durch Man-in-the-Middle-Angriffe, Denial-of-Service-Attacken oder DNS-Spoofing, zielen darauf ab, Kommunikation abzufangen, Systeme lahmzulegen oder Nutzer auf gefälschte Seiten umzuleiten.
+        Gerade kleine und mittlere Unternehmen unterschätzen oft, wie verwundbar ihre Netzwerke sein können, sei es im Büro, im Homeoffice oder unterwegs im WLAN. In diesem Abschnitt zeigen wir, wie Angreifer Netzwerkverbindungen ausnutzen, welche Risiken daraus entstehen können und wie Sie Ihre Systeme vor solchen Angriffen schützen.
+        Wir erklären typische Angriffsarten praxisnah und anschaulich, zeigen Schutzmaßnahmen wie Verschlüsselung, Netzsegmentierung oder den Einsatz sicherer Protokolle und sensibilisieren für sichere Nutzung öffentlicher Netzwerke.
+        Technisches Vorwissen ist nicht erforderlich, alle Begriffe und Szenarien werden leicht verständlich erklärt. Zum Abschluss können Sie Ihr Wissen mit einem kurzen Quiz testen.
+    </p>
+</div>
+
+<div class="accordion mb-3" id="accordionItem1">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="heading1">
+      <button class="accordion-button collapsed fs-4 fw-bold text-dark"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapse1"
+              aria-expanded="false"
+              aria-controls="collapse1">
+        Man-in-the-Middle (MITM)
+      </button>
+    </h2>
+    <div id="collapse1"
+         class="accordion-collapse collapse"
+         aria-labelledby="heading1">
+      <div class="accordion-body p-4 bg-light border rounded shadow-lg">
+        <h3 class="fs-5 fw-bold">Was ist ein Man-in-the-Middle-Angriff?</h3>
+        <p>
+          Bei einem <strong>Man-in-the-Middle (MITM)-Angriff</strong> schaltet sich ein Angreifer heimlich zwischen zwei kommunizierende Geräte – z. B. zwischen
+          Ihren Laptop und die Firmen-Website oder E-Mail-Server. Der Angreifer liest mit, verändert Daten oder leitet sie um – ohne dass Sender oder Empfänger etwas davon merken.
+        </p>
+        <p>
+          MITM-Angriffe sind besonders tückisch, weil sie oft <strong>nicht auffallen</strong> – und weil bereits einfache Schwächen wie offenes WLAN oder fehlende Verschlüsselung ausgenutzt werden können.
+        </p>
+
+        <h3 class="fs-5 fw-bold mt-4">Wie funktioniert ein MITM-Angriff?</h3>
+        <ul>
+          <li><strong>Einfügen in die Verbindung:</strong> Der Angreifer klinkt sich über WLAN, Netzwerk oder Schadsoftware in die Verbindung ein.</li>
+          <li><strong>Mitlesen & Manipulieren:</strong> Der Datenverkehr wird mitgelesen, verändert oder gespeichert – z. B. Passwörter, E-Mails oder Zahlungsdaten.</li>
+          <li><strong>Oft unbemerkt:</strong> Die Kommunikation scheint für beide Seiten normal – tatsächlich läuft alles über den Angreifer.</li>
+        </ul>
+
+        <h3 class="fs-5 fw-bold mt-4">Beispiele aus der Praxis</h3>
+        <ul>
+          <li><strong>Offenes WLAN:</strong> Ein Mitarbeitender loggt sich im Café ins WLAN ein – ein MITM-Angreifer liest Login-Daten mit.</li>
+          <li><strong>Gefälschte Webseiten:</strong> Eine scheinbar echte Login-Seite wird vom Angreifer eingeschleust.</li>
+          <li><strong>DNS-Manipulation:</strong> Der Angreifer verändert die Zieladresse von Internetanfragen und leitet auf eine falsche Seite um.</li>
+        </ul>
+
+        <h3 class="fs-5 fw-bold mt-4">Warum ist das relevant für KMU?</h3>
+        <ul>
+          <li>Mitarbeitende arbeiten zunehmend mobil – z. B. aus dem Homeoffice oder unterwegs.</li>
+          <li>Viele Unternehmen setzen auf Cloud-Dienste – wenn Verbindungen nicht gesichert sind, sind Daten leicht abfangbar.</li>
+          <li>Oft fehlt ein Bewusstsein für Verschlüsselung oder sichere Verbindungen (https, VPN).</li>
+        </ul>
+
+        <h3 class="fs-5 fw-bold mt-4">Wie kann man sich als KMU schützen?</h3>
+        <ul>
+          <li><strong>HTTPS überall verwenden:</strong> Webseiten und Webdienste sollten immer eine sichere Verbindung (mit Schloss-Symbol) nutzen.</li>
+          <li><strong>VPN für externe Zugriffe:</strong> Ein Virtual Private Network verschlüsselt die Verbindung zwischen Gerät und Firmennetzwerk.</li>
+          <li><strong>Keine offenen WLANs nutzen:</strong> Wenn nötig, nur mit VPN oder Mobil-Hotspot arbeiten.</li>
+          <li><strong>E-Mails mit TLS verschlüsseln:</strong> Damit Inhalte nicht mitgelesen werden können.</li>
+          <li><strong>IT-Systeme aktuell halten:</strong> Sicherheitsupdates schließen bekannte Schwachstellen aus.</li>
+          <li><strong>Warnsysteme einbauen:</strong> Firewalls, Netzwerkscanner und Intrusion Detection Systeme können verdächtige MITM-Muster erkennen.</li>
+        </ul>
+
+        <h3 class="fs-5 fw-bold mt-4">Fazit für KMU</h3>
+        <p>
+          Man-in-the-Middle-Angriffe sind <strong>leise, aber gefährlich</strong>. Schon eine unverschlüsselte Verbindung oder ein unachtsamer Klick reicht aus,
+          um sensible Daten abzugreifen. Aber mit einfachen Mitteln – wie VPN, verschlüsselten Webseiten und sicherem WLAN – können auch kleine Unternehmen sich effektiv schützen.
+        </p>
+        <p class="text-muted small"><em>References: </em></p>
+<ol>
+  <li>Hölbl, M., Welzer, K. und Kompara, M. (2021) <em>Security and Privacy Issues in E-Mail Communication</em>, CEUR Workshop Proceedings. Verfügbar unter: https://ceur-ws.org/Vol-2872/short08.pdf (Zugegriffen: 22. Juli 2025).</li>
+  
+  <li>Bundesamt für Sicherheit in der Informationstechnik (BSI) (o. D.) <em>E-Mail-Verschlüsselung</em>, BSI. Verfügbar unter: https://www.bsi.bund.de/DE/Themen/Verbraucherinnen-und-Verbraucher/Informationen-und-Empfehlungen/Onlinekommunikation/Verschluesselt-kommunizieren/E-Mail-Verschluesselung/e-mail-verschluesselung_node.html (Zugegriffen: 22. Juli 2025).</li>
+  
+  <li>Landeskriminalamt Nordrhein-Westfalen (2024) <em>Man-in-the-Middle-Angriffe</em>, Polizei Nordrhein-Westfalen. Verfügbar unter: https://koeln.polizei.nrw/sites/default/files/2024-11/man-in-the-middle_0.pdf (Zugegriffen: 22. Juli 2025).</li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="accordion mb-3" id="accordionItem2">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="heading2">
+      <button class="accordion-button collapsed fs-4 fw-bold text-dark"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapse2"
+              aria-expanded="false"
+              aria-controls="collapse2">
+        Denial of Service (DoS/DDoS)
+      </button>
+    </h2>
+    <div id="collapse2"
+         class="accordion-collapse collapse"
+         aria-labelledby="heading2">
+      <div class="accordion-body p-4 bg-light border rounded shadow-lg">
+        <h3 class="fs-5 fw-bold">Was ist ein DoS- oder DDoS-Angriff?</h3>
+        <p>
+          Bei einem <strong>Denial of Service (DoS)</strong>-Angriff wird ein Server oder eine Website so lange mit Anfragen überflutet,
+          bis sie überlastet ist und nicht mehr erreichbar ist. Das Ziel: Der Dienst fällt aus – Kundinnen und Kunden können nicht mehr zugreifen.
+        </p>
+        <p>
+          Noch gefährlicher ist die <strong>verteilte Variante (DDoS)</strong>: Dabei greifen Hunderte oder Tausende gekaperte Geräte gleichzeitig an – oft unbemerkt über sogenannte Botnetze.
+        </p>
+
+        <h3 class="fs-5 fw-bold mt-4">Wie läuft ein DDoS-Angriff ab?</h3>
+        <ul>
+          <li><strong>Vorbereitung:</strong> Der Angreifer steuert ein „Botnetz“ aus infizierten Rechnern oder Geräten weltweit.</li>
+          <li><strong>Angriff:</strong> Alle Bots schicken gleichzeitig unzählige Anfragen an Ihr Zielsystem (z. B. Ihre Firmenwebsite oder einen Mailserver).</li>
+          <li><strong>Überlastung:</strong> Die Server können nicht mehr antworten – Webseiten laden nicht, E-Mails kommen nicht an.</li>
+        </ul>
+
+        <h3 class="fs-5 fw-bold mt-4">Beispiele aus dem Alltag</h3>
+        <ul>
+          <li>Eine Online-Shop-Seite wird zur Hauptgeschäftszeit lahmgelegt – Kunden springen ab.</li>
+          <li>Die Website eines IT-Dienstleisters ist tagelang offline – Reputationsverlust und Vertragsstrafen drohen.</li>
+          <li>Ein E-Mail-System fällt aus – wichtige Kundenkommunikation bricht ab.</li>
+        </ul>
+
+        <h3 class="fs-5 fw-bold mt-4">Warum sind auch KMU betroffen?</h3>
+        <ul>
+          <li>DDoS-Angriffe sind heute leicht „buchbar“ – z. B. über das Darknet oder für Erpressung („Wir hören auf, wenn Sie zahlen“).</li>
+          <li>KMU setzen oft auf günstiges Webhosting – das ist besonders anfällig für Überlastung.</li>
+          <li>Selbst ein kurzer Ausfall kann Kunden kosten oder zu finanziellen Schäden führen.</li>
+        </ul>
+
+        <h3 class="fs-5 fw-bold mt-4">Wie kann man sich als KMU schützen?</h3>
+        <ul>
+          <li><strong>DDoS-Schutz beim Hoster buchen:</strong> Viele Webhoster bieten Schutzpakete oder Weiterleitungen im Angriffsfall an.</li>
+          <li><strong>Content Delivery Networks (CDNs):</strong> Dienste wie Cloudflare oder Akamai verteilen den Datenverkehr auf viele Server.</li>
+          <li><strong>Firewall & Traffic-Filter:</strong> Technische Schutzsysteme blockieren verdächtige Anfragen automatisch.</li>
+          <li><strong>Rate Limiting:</strong> Begrenzung der Anzahl von Anfragen pro IP-Adresse reduziert die Wirkung von Angriffen.</li>
+          <li><strong>Monitoring & Alarmierung:</strong> Frühwarnsysteme erkennen Angriffe sofort – je früher die Reaktion, desto besser.</li>
+        </ul>
+
+        <h3 class="fs-5 fw-bold mt-4">Was tun im Ernstfall?</h3>
+        <ul>
+          <li><strong>IT-Dienstleister sofort informieren:</strong> Je schneller die Reaktion, desto eher kann umgeleitet oder gefiltert werden.</li>
+          <li><strong>Kommunikation aufrechterhalten:</strong> Kunden auf Social Media oder über Notfallseiten informieren.</li>
+          <li><strong>Nach dem Angriff Ursachen analysieren:</strong> Welche Schwachstellen wurden ausgenutzt? Was kann verbessert werden?</li>
+        </ul>
+
+        <h3 class="fs-5 fw-bold mt-4">Fazit für KMU</h3>
+        <p>
+          DoS- und DDoS-Angriffe sind keine Science-Fiction – sie gehören heute zu den häufigsten Cyberangriffen weltweit. 
+          Doch mit einfachen Maßnahmen wie DDoS-Schutz beim Hosting, Monitoring und klaren Notfallplänen lässt sich die Gefahr stark reduzieren. 
+          Wer vorbereitet ist, schützt nicht nur seine Technik – sondern auch sein Geschäft und seine Kundschaft.
+        </p>
+        <p class="text-muted small"><em>References: </em></p>
+<ol>
+  <li>Sajjad, S.M. und Shahid, A.R. (2016) <em>Denial of service attacks - an updated perspective</em>, ResearchGate. Verfügbar unter: https://www.researchgate.net/publication/309100353_Denial_of_service_attacks_-_an_updated_perspective (Zugegriffen: 22. Juli 2025).</li>
+  
+  <li>Kaspersky (o. D.) <em>Was ist ein DDoS-Angriff?</em>, Kaspersky Resource Center. Verfügbar unter: https://www.kaspersky.de/resource-center/threats/ddos-attacks (Zugegriffen: 22. Juli 2025).</li>
+  
+  <li>Bundesamt für Sicherheit in der Informationstechnik (BSI) (2020) <em>Gefährdung durch DDoS-Attacken</em>, Allianz für Cybersicherheit. Verfügbar unter: https://www.allianz-fuer-cybersicherheit.de/SharedDocs/Downloads/Webs/ACS/DE/BSI-CS/BSI-CS_025.pdf?__blob=publicationFile&v=1 (Zugegriffen: 22. Juli 2025).</li>
+  
+  <li>Bundesamt für Sicherheit in der Informationstechnik (BSI) (2021) <em>Cyber-Sicherheitslage: Bedrohungen und Maßnahmen</em>, Allianz für Cybersicherheit. Verfügbar unter: https://www.allianz-fuer-cybersicherheit.de/SharedDocs/Downloads/Webs/ACS/DE/BSI-CS/BSI-CS_002.pdf?__blob=publicationFile&v=1 (Zugegriffen: 22. Juli 2025).</li>
+  
+  <li>Bundesamt für Sicherheit in der Informationstechnik (BSI) (2020) <em>Schutz vor DoS/DDoS-Angriffen</em>, Allianz für Cybersicherheit. Verfügbar unter: https://www.allianz-fuer-cybersicherheit.de/SharedDocs/Downloads/Webs/ACS/DE/BSI-CS/BSI-CS_090.pdf?__blob=publicationFile&v=1 (Zugegriffen: 22. Juli 2025).</li>
+</ol>
+      </div>
+    </div>
+  </div>
+</div>
+<a href="{{url_for('quiznet')}}"><button type="button" class="btn btn-primary btn-lg" style="background-color: #007bff; color: white;">Quiz</button></a>
+{% endblock %}
+
+       

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% import "bootstrap/form.html" as wtf %}
+{% block title %}Startseite{% endblock %}
+{% block content %}
+<div class="container">
+    <h2 class="my-4">Maleware-basierte Angriffe Quiz</h2>
+
+    <form method="POST" action="/quizmal">
+        {{ form.hidden_tag() }}
+        
+        <div class="card mb-4">
+            <div class="card-body">
+                {{ wtf.render_field(form.mal1) }}
+                {{ wtf.render_field(form.mal2) }}
+                {{ wtf.render_field(form.mal3) }}
+                {{ wtf.render_field(form.mal4) }}
+                {{ wtf.render_field(form.mal5) }}
+                {{ wtf.render_field(form.mal6) }}
+                {{ wtf.render_field(form.mal7) }}
+                {{ wtf.render_field(form.mal8) }}
+                {{ wtf.render_field(form.mal9) }}
+                {{ wtf.render_field(form.mal10) }}
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-between">
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">
+                ← Zurück zur Startseite
+            </a>
+            <button type="submit" class="btn btn-success">
+                {{ form.submit.label.text }} →
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

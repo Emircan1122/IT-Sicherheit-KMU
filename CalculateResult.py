@@ -55,19 +55,80 @@ class CalculateResult:
 
     def _build_bewertungskriterien(self):
         """Define scoring rules for different test types"""
-        if self.test_type == "Schnell":
+        if self.test_type == "web":
             #für den SchnellCheck
             #62
             self.bewertungskriterien = [
-                (self.form_data.get('tse'), ["ja"], 10),
-                (self.form_data.get('beleg'), ["ja"], 9),
-                (self.form_data.get('pruefung'), ["ja"], 7),
-                (self.form_data.get('trennung'), ["ja"], 8),
-                (self.form_data.get('einnahmen'), ["ja"], 10),
-                (self.form_data.get('steuererklärungen'), ["ja"], 6),
-                (self.form_data.get('nachforderungen'), ["nein"], 5),
-                (self.form_data.get('trinkgelder'), ["ja"], 3),
-                (self.form_data.get('schulung'), ["ja"], 4),
+                (self.form_data.get('web1'), ["ja"], 10),
+                (self.form_data.get('web2'), ["ja"], 9),
+                (self.form_data.get('web3'), ["ja"], 7),
+                (self.form_data.get('web4'), ["ja"], 8),
+                (self.form_data.get('web5'), ["ja"], 10),
+                (self.form_data.get('web6'), ["ja"], 6),
+                (self.form_data.get('web7'), ["nein"], 5),
+                (self.form_data.get('web8'), ["ja"], 3),
+                (self.form_data.get('web9'), ["ja"], 4),
+                (self.form_data.get('web10'), ["ja"], 4),
+            ]
+        if self.test_type == "net":
+            #für den SchnellCheck
+            #62
+            self.bewertungskriterien = [
+                (self.form_data.get('net1'), ["ja"], 10),
+                (self.form_data.get('net2'), ["ja"], 9),
+                (self.form_data.get('net3'), ["ja"], 7),
+                (self.form_data.get('net4'), ["ja"], 8),
+                (self.form_data.get('net5'), ["ja"], 10),
+                (self.form_data.get('net6'), ["ja"], 6),
+                (self.form_data.get('net7'), ["nein"], 5),
+                (self.form_data.get('net8'), ["ja"], 3),
+                (self.form_data.get('net9'), ["ja"], 4),
+                (self.form_data.get('net10'), ["ja"], 4),
+            ]
+        if self.test_type == "soc":
+            #für den SchnellCheck
+            #62
+            self.bewertungskriterien = [
+                (self.form_data.get('soc1'), ["ja"], 10),
+                (self.form_data.get('soc2'), ["ja"], 9),
+                (self.form_data.get('soc3'), ["ja"], 7),
+                (self.form_data.get('soc4'), ["ja"], 8),
+                (self.form_data.get('soc5'), ["ja"], 10),
+                (self.form_data.get('soc6'), ["ja"], 6),
+                (self.form_data.get('soc7'), ["nein"], 5),
+                (self.form_data.get('soc8'), ["ja"], 3),
+                (self.form_data.get('soc9'), ["ja"], 4),
+                (self.form_data.get('soc10'), ["ja"], 4),
+            ]
+        if self.test_type == "mal":
+            #für den SchnellCheck
+            #62
+            self.bewertungskriterien = [
+                (self.form_data.get('mal1'), ["ja"], 10),
+                (self.form_data.get('mal2'), ["ja"], 9),
+                (self.form_data.get('mal3'), ["ja"], 7),
+                (self.form_data.get('mal4'), ["ja"], 8),
+                (self.form_data.get('mal5'), ["ja"], 10),
+                (self.form_data.get('mal6'), ["ja"], 6),
+                (self.form_data.get('mal7'), ["nein"], 5),
+                (self.form_data.get('mal8'), ["ja"], 3),
+                (self.form_data.get('mal9'), ["ja"], 4),
+                (self.form_data.get('mal10'), ["ja"], 4),
+            ]
+        if self.test_type == "bekoid":
+            #für den SchnellCheck
+            #62
+            self.bewertungskriterien = [
+                (self.form_data.get('bekoid1'), ["ja"], 10),
+                (self.form_data.get('bekoid2'), ["ja"], 9),
+                (self.form_data.get('bekoid3'), ["ja"], 7),
+                (self.form_data.get('bekoid4'), ["ja"], 8),
+                (self.form_data.get('bekoid5'), ["ja"], 10),
+                (self.form_data.get('bekoid6'), ["ja"], 6),
+                (self.form_data.get('bekoid7'), ["nein"], 5),
+                (self.form_data.get('bekoid8'), ["ja"], 3),
+                (self.form_data.get('bekoid9'), ["ja"], 4),
+                (self.form_data.get('bekoid10'), ["ja"], 4),
             ]
         else:
             #für den AusführlichenCheck
@@ -192,7 +253,7 @@ class CalculateResult:
         
         logger.debug(f'Total points calculated: {pos_answers}')
 
-        if self.test_type == "Schnell":
+        if self.test_type == "Schnell" or "web":
             if pos_answers < 42:   
                 ampelfarbe = "rot"
             elif pos_answers < 52:

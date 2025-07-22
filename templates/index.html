@@ -5,87 +5,59 @@
 {% block content %}
 <div class="jumbotron text-center">
 
-    <div class="container py-5 mt-5">
+    <div class="container py-3 mt-3">
     <div class="row">
-        
+
+        <div class="text-center mb-5">
+            <h3 class="fw-bold text-dark display-">Vorwort</h3>
+            <p></p>
+            <p class="lead text-dark fs-7">
+                Herzlich willkommen auf unserer Plattform für <strong>IT-Sicherheit in kleinen und mittleren Unternehmen</strong>. 
+                Wir verstehen die besonderen Herausforderungen, denen Sie als KMU im digitalen Umfeld begegnen – von subtilen Cyber-Bedrohungen bis hin zu komplexen Angriffsvektoren. Genau hier setzen wir an. 
+                Mit unserem interaktiven Sicherheits-Checker verschaffen Sie sich in wenigen Schritten einen klaren Überblick über den aktuellen Schutzstatus Ihrer Systeme. 
+                Erkennen Sie potenzielle Schwachstellen, erhalten Sie maßgeschneiderte Handlungsempfehlungen und legen Sie den Grundstein für eine robuste IT-Infrastruktur. 
+                Starten Sie jetzt und stärken Sie Ihr Unternehmen gegen die Cyber-Risiken von heute und morgen. Gemeinsam sorgen wir dafür, dass Ihre digitalen Prozesse sicher und zukunftsfähig bleiben.
+            </p>
+        </div>
+     
         <div class="col-md-6">
             <div class="p-4 bg-light border rounded shadow-lg h-100">
-                <h3 class="text-dark fw-bold fs-4">Das Problem:</h3>
-                <p class="mb-4 pb-2 border-bottom text-muted fs-5">
-                Ein Imbissbesitzer, der ich nicht mit den Steuergesetzen, möglicher Weise noch aus dem Ausland kommt und 
-                kaum die Steuergesetze Deutschlands versteht, möchte sein Betrieb Steuertranzparenter machen um Nachhaltiger zu wirtschaften. Da Gastrobetriebe öfters um das 
-                wirtschaftliche überleben kämpfen müssen, steht ein Steuerberater außer Frage.</p>
+                <h3 class="text-dark fw-bold fs-4">Lehrinhalte & Quizes</h3>
+                <p class="mb-4 pb-2 border-bottom text-dark fs-5">
+                Über Angriffsvektoren zu Lernen kann stark dazu beitragen, die 'Security Posture' eines Unternehmens zu stärken.
+                Aus diesem Grund empfehlen wir sich unsere Kurzen, sowie übersichtlichen Lehrinhalte anzuschauen</p>
+
+                <figure class="text-center my-2">
+                <blockquote class="blockquote fs-4 fst-italic mx-auto" style="max-width: 600px; border-left: 4px solid var(--security-secondary); padding-left: 1rem;">
+                    „Wenn du den Feind und dich selbst kennst, brauchst du den Ausgang von hundert Schlachten nicht zu fürchten.“
+                </blockquote>
+                <figcaption class="blockquote-footer mt-2">
+                    Sun Tzu, <cite>Die Kunst des Krieges</cite>
+                </figcaption>
+                </figure>
+                <a href="{{url_for('LehrinhalteBase')}}"><button type="button" class="btn btn-primary btn-lg" style="background-color: #007bff; color: white;">Zu den Inhalten</button></a>
             </div>
         </div>
       
         <div class="col-md-6">
             <div class="p-4 bg-light border rounded shadow-lg h-100">
-                <h3 class="text-dark fw-bold fs-4">Die Lösung:</h3>
-                <p class="mb-4 pb-2 border-bottom text-muted fs-5">
-                Der Sustainable Innovation Check soll klein bis mittleren Unternehmern die Chance geben sich kostengünstig, simpel und schnell Nachhaltig zu verhalten. 
-                In einem Online Check kann der Nutzer seine Situation beschreiben indem unser Team die relevante, rechtliche Lage verständnisvoll darlegt. 
-                Nach dem Check bekommt der Nutzer einen Nachhaltigkeitsbericht(Einschätzung), welche Ihm Probleme, mögliche Probleme und Verbesserung vorschlägt.</p>
+                <h3 class="text-dark fw-bold fs-4">KMU Selbst Checker</h3>
+                <p class="mb-4 pb-2 border-bottom text-dark fs-5">
+                Wir bieten einen Kostenfreien IT-Sicherheits Checker für KMU's an, dieser kann schnell und einfach ausgefüllt werden und gibt Ihnen ein direktes Feedback.
+                <br><br>
+                Unter anderem werden auf Themen wie Zugriffskontrollen, Datensicherheit, Benutzerschulungen und Sensiblisierung, Entwicklung von Sicherheitsrichtlinien und mehr eingegangen.
+                <br><br>
+                Im weiterführenden Abschnitt wird alles ausführlich erklärt.
                 </p>
+                <a href="{{url_for('LehrinhalteBase')}}"><button type="button" class="btn btn-primary btn-lg" style="background-color: #007bff; color: white;">Zum Checker Abschnitt</button></a>
             </div>
         </div>
     </div>
     </div>
-        
-        <a href ="{{url_for('schnelltest')}}"><button type="button" class="btn btn-secondary btn-lg">Zum Schnelltest</button></a>
-        <a href="{{url_for('ausführlicherTest')}}"><button type="button" class="btn btn-primary btn-lg">Zum auführlichen Test</button></a>
-
 </div>
 
-
-<div class="container py-5">
-    <div class="text-center mb-5">
-        <h3 class="fw-bold display-">Mögliche Anlaufstelle bei Schwierigkeiten</h3>
-        <p class="lead text-muted fs-7">
-            Die <strong>Deutsche Hotel- und Gaststättenverband (DEHOGA)</strong> setzt sich aktiv für die Interessen der Gastronomiebranche ein.
-            Steuertransparenz ist nicht nur eine gesetzliche Notwendigkeit, sondern auch ein Schlüssel zu langfristigem geschäftlichem Erfolg.
-            Erfahre hier, warum Steuertransparenz wichtig ist, welche Vorgaben du beachten solltest und wie die DEHOGA dich dabei unterstützt.
-        </p>
-    </div>
-
-    <div class="row g-4">
-
-        <div class="col-md-4">
-            <div class="d-flex flex-column justify-content-between p-5 bg-light border rounded shadow-lg h-100">
-                <h5 class="text-dark fw-bold fs-4">Warum ist Steuertransparenz wichtig?</h5>
-                <p class="text-muted fs-5">
-                    Steuertransparenz ist entscheidend, um rechtliche Risiken zu minimieren und Vertrauen bei Kunden sowie Behörden aufzubauen.
-                    Eine klare und nachvollziehbare Buchführung sorgt für Sicherheit und hilft, unangenehme Prüfungen und Strafen zu vermeiden.
-                </p>
-                <a href="https://www.dehoga.de" class="btn btn-primary btn-lg mt-3">Mehr erfahren</a>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="d-flex flex-column justify-content-between p-5 bg-light border rounded shadow-lg h-100">
-                <h5 class="text-dark fw-bold fs-4">Wichtige Richtlinien</h5>
-                <p class="text-muted fs-5">
-                    Die Einhaltung steuerlicher Vorschriften ist für jedes Gastronomieunternehmen essenziell. Erfahre mehr über 
-                    Buchführungspflichten, digitale Kassenführung und gesetzliche Vorgaben, um dein Geschäft abzusichern.
-                </p>
-                <a href="https://www.dehoga.de" class="btn btn-primary btn-lg mt-3">Mehr erfahren</a>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="d-flex flex-column justify-content-between p-5 bg-light border rounded shadow-lg h-100">
-                <h4 class="text-dark fw-bold fs-4">Wie hilft die DEHOGA?</h4>
-                <p class="text-muted fs-5">
-                    Die DEHOGA unterstützt Gastronomieunternehmen mit umfassender Beratung, praxisnahen Musterlösungen und gezielten Schulungen 
-                    zur steuerlichen Transparenz. Profitiere von Expertenwissen und reduziere dein unternehmerisches Risiko.
-                </p>
-                <a href="https://www.dehoga.de" class="btn btn-primary btn-lg mt-3">Mehr erfahren</a>
-            </div>
-        </div>
-
-    </div>
-</div>
 {# Disclaimer #}
-<div class="d-flex flex-row bd-highlight m-3 p-3 shadow-lg">
+{# <div class="d-flex flex-row bd-highlight m-3 p-3 shadow-lg">
     <div class="p-2 bd-highlight card border-primary m-3" style="max-width: 20rem;">
         <div class="card-header">Disclaimer</div>
         <div class="card-body">
@@ -107,8 +79,57 @@
             <p class="card-text fs-5">Die Nutzung dieses Tools erfolgt auf eigene Verantwortung. Für die Richtigkeit, Vollständigkeit oder Aktualität der bereitgestellten Informationen und Berechnungen wird keine Haftung übernommen. Die Ergebnisse sind nicht bindend und ersetzen keine professionelle Beratung durch Steuerexperten oder Rechtsanwälte.</p>
         </div>
     </div>
-</div>
-
+</div> #}
+<section class="py-5 ">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col">
+                <div class="card h-100 border-start border-3 border-primary border-highlight">
+                    <div class="card-header bg-transparent border-0 py-3">
+                        <h4 class="card-title text-center fw-bold text-primary">
+                            <i class="bi bi-exclamation-circle me-2"></i>Haftungsausschluss für Inhalte
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            Die bereitgestellten Lerninhalte und Empfehlungen auf dieser Website dienen ausschließlich zu Informations- und Schulungszwecken. Trotz sorgfältiger Recherche übernehmen wir keine Gewähr für die Aktualität, Richtigkeit und Vollständigkeit der Inhalte. Jegliche Nutzung der Informationen erfolgt auf eigene Verantwortung.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="card h-100 border-start border-3 border-info border-highlight">
+                    <div class="card-header bg-transparent border-0 py-3">
+                        <h4 class="card-title fw-bold text-center text-info">
+                            <i class="bi bi-shield-lock me-2"></i>Kein Ersatz für professionelle Beratung
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            Unsere Checklisten und Tools ersetzen keine individuelle, fachkundige Beratung oder Prüfung durch autorisierte IT-Sicherheits- oder Rechtsdienstleister. Für konkrete Sicherheitskonzepte und rechtliche Fragestellungen sollten Sie stets qualifizierte Experten hinzuziehen.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div class="card h-100 border-start border-3 border-warning border-highlight">
+                    <div class="card-header bg-transparent border-0 py-3">
+                        <h4 class="card-title fw-bold text-center text-warning">
+                            <i class="bi bi-shield-exclamation me-2"></i>Haftungsausschluss für externe Links
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            Diese Website kann Verlinkungen zu externen, von uns unabhängigen Seiten enthalten. Für den Inhalt verlinkter Seiten sind ausschließlich deren Betreiber verantwortlich. Wir übernehmen keine Verantwortung für die Verfügbarkeit oder Richtigkeit externer Angebote.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
 
     
