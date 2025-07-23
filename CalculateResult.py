@@ -66,8 +66,10 @@ class CalculateResult:
                 (self.form_data.get('web5'), ["Dateien außerhalb des vorgesehenen Verzeichnisses auszulesen"], 10),
                 (self.form_data.get('web6'), ["../"], 10),
                 (self.form_data.get('web7'), ["Sie nutzen oft einfache Webtools, die Eingaben nicht ausreichend prüfen"], 10),
+                (self.form_data.get('web8'), ["Stored XSS"], 10),
+                (self.form_data.get('web9'), ["Sie setzen oft auf dynamische Webformulare, prüfen Eingaben aber nicht ausreichend"], 10),
             ]
-        if self.test_type == "net":
+        elif self.test_type == "net":
             #für den SchnellCheck
             #62
             self.bewertungskriterien = [
@@ -82,7 +84,7 @@ class CalculateResult:
                 (self.form_data.get('net9'), ["ja"], 4),
                 (self.form_data.get('net10'), ["ja"], 4),
             ]
-        if self.test_type == "soc":
+        elif self.test_type == "soc":
             #für den SchnellCheck
             #62
             self.bewertungskriterien = [
@@ -97,7 +99,7 @@ class CalculateResult:
                 (self.form_data.get('soc9'), ["ja"], 4),
                 (self.form_data.get('soc10'), ["ja"], 4),
             ]
-        if self.test_type == "mal":
+        elif self.test_type == "mal":
             #für den SchnellCheck
             #62
             self.bewertungskriterien = [
@@ -112,7 +114,7 @@ class CalculateResult:
                 (self.form_data.get('mal9'), ["ja"], 4),
                 (self.form_data.get('mal10'), ["ja"], 4),
             ]
-        if self.test_type == "bekoid":
+        elif self.test_type == "bekoid":
             #für den SchnellCheck
             #62
             self.bewertungskriterien = [
@@ -127,7 +129,7 @@ class CalculateResult:
                 (self.form_data.get('bekoid9'), ["ja"], 4),
                 (self.form_data.get('bekoid10'), ["ja"], 4),
             ]
-        if self.test_type == "schnell":
+        elif self.test_type == "schnell":
             self.bewertungskriterien = [
                 (self.form_data.get('backup'), ["ja"], 10),
                 (self.form_data.get('it_schulung'), ["ja"], 8),
@@ -263,9 +265,9 @@ class CalculateResult:
         logger.debug(f'Total points calculated: {pos_answers}')
 
         if self.test_type == "web":
-            if pos_answers < 30:   
+            if pos_answers < 40:   
                 ampelfarbe = "rot"
-            elif pos_answers < 50:
+            elif pos_answers < 80:
                 ampelfarbe = "gelb"
             else:
                 ampelfarbe = "grün"

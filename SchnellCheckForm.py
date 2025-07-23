@@ -57,42 +57,50 @@ class SchnellCheckForm(FlaskForm):
      cloud_dienste = RadioField('Nutzen Sie professionelle Cloud-/Hosting-Dienste mit Sicherheitszertifizierungen?',
                                    choices=[('ja', 'Ja'), ('nein', 'Nein')],
                                    validators=[DataRequired()])
-     
+
      #Einreichen
      submit = SubmitField('Fertig')
      
 class quizwebanwendungen(FlaskForm): 
      #Frage 1
      web1 = RadioField('Was beschreibt eine klassische SQL-Injection (SQLi)?',
-                         choices=[('Falsch', 'Die Umgehung von Login-Feldern durch JavaScript'),
-                                  ('Richtig', 'Das Einschleusen von manipuliertem SQL-Code über Benutzereingaben'),
-                                  ('Falsch', 'Die Ausnutzung von DNS-Anfragen zur Datenexfiltration')],
+                         choices=[('Die Umgehung von Login-Feldern durch JavaScript', 'Die Umgehung von Login-Feldern durch JavaScript'),
+                                  ('Das Einschleusen von manipuliertem SQL-Code über Benutzereingaben', 'Das Einschleusen von manipuliertem SQL-Code über Benutzereingaben'),
+                                  ('Die Ausnutzung von DNS-Anfragen zur Datenexfiltration', 'Die Ausnutzung von DNS-Anfragen zur Datenexfiltration')],
                          validators=[DataRequired()])
-                         
+             
      #Frage 2
      web2 = RadioField('Welche der folgenden Angriffsmethoden zählt NICHT zu den typischen SQL-Injection-Arten?',
-                     choices=[('Falsch', 'Authentication Bypass'), ('Richtig', 'Cross-Site Scripting (XSS)'), ('Falsch', 'Blind SQLi')],
+                     choices=[('Authentication Bypass', 'Authentication Bypass'), ('Cross-Site Scripting (XSS)', 'Cross-Site Scripting (XSS)'), ('Blind SQLi', 'Blind SQLi')],
                      validators=[DataRequired()])
      
      #Frage 3
      web3 = RadioField('Warum sind kleine und mittlere Unternehmen (KMU) besonders gefährdet durch SQLi-Angriffe?',
-                       choices=[('Falsch', 'Sie setzen verstärkt auf künstliche Intelligenz'), ('Richtig', 'Ihre Systeme sind oft veraltet oder schlecht abgesichert'), ('Falsch', 'Sie entwickeln keine eigenen Webanwendungen')],
+                       choices=[('Sie setzen verstärkt auf künstliche Intelligenz', 'Sie setzen verstärkt auf künstliche Intelligenz'), ('Ihre Systeme sind oft veraltet oder schlecht abgesichert', 'Ihre Systeme sind oft veraltet oder schlecht abgesichert'), ('Sie entwickeln keine eigenen Webanwendungen', 'Sie entwickeln keine eigenen Webanwendungen')],
                        validators=[DataRequired()])
      #Frage 4
      web4 = RadioField('Was passiert bei einem Cross-Site Scripting (XSS)-Angriff?',
-                          choices=[('Falsch', 'Schadcode wird direkt auf dem Server des Angreifers ausgeführt'), ('Richtig', 'Der Angreifer schleust Skripte ein, die im Browser des Nutzers ausgeführt werden'), ('Falsch', 'Die Datenbank wird durch schadhafte SQL-Befehle manipuliert')],
+                          choices=[('Schadcode wird direkt auf dem Server des Angreifers ausgeführt', 'Schadcode wird direkt auf dem Server des Angreifers ausgeführt'), ('Der Angreifer schleust Skripte ein, die im Browser des Nutzers ausgeführt werden', 'Der Angreifer schleust Skripte ein, die im Browser des Nutzers ausgeführt werden'), ('Die Datenbank wird durch schadhafte SQL-Befehle manipuliert', 'Die Datenbank wird durch schadhafte SQL-Befehle manipuliert')],
                           validators=[DataRequired()])
      #Frage 5
      web5 = RadioField('Was ist das Ziel eines Directory Traversal Angriffs?',
-                          choices=[('Falsch', 'Schadsoftware im Arbeitsspeicher zu injizieren'), ('Richtig', 'Dateien außerhalb des vorgesehenen Verzeichnisses auszulesen'), ('Falsch', 'Den Benutzer zur Eingabe von Passwörtern zu verleiten')],
+                          choices=[('Schadsoftware im Arbeitsspeicher zu injizieren', 'Schadsoftware im Arbeitsspeicher zu injizieren'), ('Dateien außerhalb des vorgesehenen Verzeichnisses auszulesen', 'Dateien außerhalb des vorgesehenen Verzeichnisses auszulesen'), ('Den Benutzer zur Eingabe von Passwörtern zu verleiten', 'Den Benutzer zur Eingabe von Passwörtern zu verleiten')],
                           validators=[DataRequired()])
      #Frage 6
      web6 = RadioField('Welche Zeichenfolge wird typischerweise bei einem Directory Traversal Angriff verwendet?',
-                           choices=[('Falsch', '--DROP'), ('Falsch', '<script>'), ('Richtig', '../')],
+                           choices=[('--DROP', '--DROP'), ('<script>', '<script>'), ('../', '../')],
                            validators=[DataRequired()])
      #Frage 7
      web7 = RadioField('Warum sind besonders KMU anfällig für Directory Traversal Angriffe?',
-                                   choices=[('Falsch', 'Sie betreiben in der Regel keine Webanwendungen'), ('Richtig', 'Sie nutzen oft einfache Webtools, die Eingaben nicht ausreichend prüfen'), ('Falsch', 'Sie verwenden ausschließlich Cloud-Dienste ohne lokale Pfade')],
+                                   choices=[('Sie betreiben in der Regel keine Webanwendungen', 'Sie betreiben in der Regel keine Webanwendungen'), ('Sie nutzen oft einfache Webtools, die Eingaben nicht ausreichend prüfen', 'Sie nutzen oft einfache Webtools, die Eingaben nicht ausreichend prüfen'), ('Sie verwenden ausschließlich Cloud-Dienste ohne lokale Pfade', 'Sie verwenden ausschließlich Cloud-Dienste ohne lokale Pfade')],
+                                   validators=[DataRequired()])
+     
+     web8 = RadioField('Welche XSS-Art wird dauerhaft auf der Webseite gespeichert?',
+                           choices=[('Reflected XSS', 'Reflected XSS'), ('Stored XSS', 'Stored XSS'), ('DOM-based XSS', 'DOM-based XSS')],
+                           validators=[DataRequired()])
+     #Frage 7
+     web9 = RadioField('Warum sind KMU besonders anfällig für XSS-Angriffe?',
+                                   choices=[('Sie verwenden ausschließlich lokale Netzwerke ohne Schutzmaßnahmen', 'Sie verwenden ausschließlich lokale Netzwerke ohne Schutzmaßnahmen'), ('Sie setzen oft auf dynamische Webformulare, prüfen Eingaben aber nicht ausreichend', 'Sie setzen oft auf dynamische Webformulare, prüfen Eingaben aber nicht ausreichend'), ('Ihre Webseiten sind vollständig statisch und daher besonders gefährdet', 'Ihre Webseiten sind vollständig statisch und daher besonders gefährdet')],
                                    validators=[DataRequired()])
      #Einreichen
      submit = SubmitField('Fertig')

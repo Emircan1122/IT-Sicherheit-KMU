@@ -105,7 +105,6 @@ def schnelltest():
 
     return render_template('schnelltest.html', form=form, test_type = session['test_type'])
 
-
 @app.route('/quizweb', methods=['GET', 'POST'])
 def quizweb():
     test_type = 'web'
@@ -127,6 +126,8 @@ def quizweb():
             'Was ist das Ziel eines Directory Traversal Angriffs?': form.web5.data,
             'Welche Zeichenfolge wird typischerweise bei einem Directory Traversal Angriff verwendet?': form.web6.data,
             'Warum sind besonders KMU anfällig für Directory Traversal Angriffe?': form.web7.data,
+            'Welche XSS-Art wird dauerhaft auf der Webseite gespeichert?': form.web8.data,
+            'Warum sind KMU besonders anfällig für XSS-Angriffe?': form.web9.data,
         }
         eingaben = [] 
         for frage, user_answer in user_answers.items():
