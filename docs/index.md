@@ -14,7 +14,7 @@ Hier siehst du zwei kurze Videos, die dir unsere Plattform in Aktion zeigen.
   playsinline 
   controls
   style="max-width: 100%; height: auto;">
-  Ihr Browser unterstützt das Video-Tag nicht.
+  Ihr Browser unterstützt das "Video-Tag" nicht.
 </video>
 
 ---
@@ -25,4 +25,4 @@ Hier siehst du zwei kurze Videos, die dir unsere Plattform in Aktion zeigen.
 
 ---
 
-© 2025 Unternehmenssoftware für KMU / Website: IT-Sicherheit für KMU
+© 2025 Unternehmenssoftware für KMU / Website: IT-Sicherheit für KMU 
