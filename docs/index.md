@@ -7,7 +7,7 @@ Hier siehst du zwei kurze Videos, die dir unsere Plattform in Aktion zeigen.
 ### Video 1
 
 <video 
-  src="{{'Video KMU.mp4' | relative_url }}"  
+  src="{{'/assets/videos/Video KMU.mp4' | relative_url }}"  
   autoplay 
   loop 
   muted 
