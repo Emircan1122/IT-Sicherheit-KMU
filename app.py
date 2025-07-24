@@ -47,6 +47,10 @@ def home():
 def LehrinhalteBase():
     return render_template('LehrinhalteBase.html')
 
+@app.route('/indexCheck')
+def indexCheck():
+    return render_template('indexCheck.html')
+
 @app.route('/webanwendungen')
 def webanwendungen():
     return render_template('webanwendungen.html')
@@ -153,16 +157,16 @@ def quiznet():
         session['ampelfarbe'] = ampelfarbe
         app.logger.debug(f'Ampelfarbe result: {ampelfarbe}, session ampelfarbe: {session['ampelfarbe']},  Punkte: {punkte} ------------------------------------------')
         user_answers = {
-            'Wie ist Ihr Gastronomiebetrieb strukturiert?': form.net1.data,
-            'Erfüllt Ihr Kassensystem die Anforderungen einer zertifizierten technischen Sicherheitseinrichtung (TSE)?': form.net2.data,
-            'Geben Sie für jede Transaktion einen Beleg aus?': form.net3.data,
-            'Wurde Ihr Kassensystem innerhalb der letzten 12 Monate geprüft oder zertifiziert?': form.net4.data,
-            'Trennen Sie Speisen (7% MwSt.) und Getränke (19% MwSt.) korrekt in Ihrer Buchhaltung?': form.net5.data,
-            'Erfassen Sie alle Einnahmen aus Barzahlungen, Kartenzahlungen und Lieferdiensten vollständig?': form.net6.data,
-            'Reichen Sie Ihre Steuererklärungen immer fristgerecht ein?': form.net7.data,
-            'Haben Sie in den letzten 2 Jahren Umsatzsteuer-Nachforderungen erhalten?': form.net8.data,
-            'Dokumentieren Sie Trinkgelder gemäß den steuerlichen Vorgaben?': form.net9.data,
-            'Werden Ihre Mitarbeitenden regelmäßig zu steuerlichen Vorgaben geschult (z.B. Kassensicherungsverordnung, Trinkgeldregelung)?': form.net10.data,
+            'Was passiert bei einem Ransomware-Angriff typischerweise?': form.net1.data,
+            'Was ist mit „Double Extortion“ in Zusammenhang mit Ransomware gemeint?': form.net2.data,
+            'Warum sind KMU besonders gefährdet durch Ransomware-Angriffe?': form.net3.data,
+            'Welche Schutzmaßnahmen helfen konkret gegen Ransomware?': form.net4.data,
+            'Was unterscheidet einen Wurm von einem klassischen Computervirus?': form.net5.data,
+            'Welches dieser historischen Beispiele war eine Kombination aus Wurm und Ransomware?': form.net6.data,
+            'Warum sind Unternehmen, insbesondere KMU, besonders gefährdet durch Würmer?': form.net7.data,
+            'Welche Maßnahmen helfen gegen die Ausbreitung von Würmern?': form.net8.data,
+            'Was ist ein typisches Merkmal eines Trojaners?': form.net9.data,
+            'Welche Schutzmaßnahmen helfen effektiv gegen Trojaner?': form.net10.data,
         }
         eingaben = [] 
         for frage, user_answer in user_answers.items():

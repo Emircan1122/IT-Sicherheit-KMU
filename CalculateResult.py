@@ -73,16 +73,16 @@ class CalculateResult:
             #für den SchnellCheck
             #62
             self.bewertungskriterien = [
-                (self.form_data.get('net1'), ["ja"], 10),
-                (self.form_data.get('net2'), ["ja"], 9),
-                (self.form_data.get('net3'), ["ja"], 7),
-                (self.form_data.get('net4'), ["ja"], 8),
-                (self.form_data.get('net5'), ["ja"], 10),
-                (self.form_data.get('net6'), ["ja"], 6),
-                (self.form_data.get('net7'), ["nein"], 5),
-                (self.form_data.get('net8'), ["ja"], 3),
-                (self.form_data.get('net9'), ["ja"], 4),
-                (self.form_data.get('net10'), ["ja"], 4),
+                (self.form_data.get('net1'), ["Dateien werden verschlüsselt und ein Lösegeld wird gefordert"], 10),
+                (self.form_data.get('net2'), ["Daten werden verschlüsselt und zusätzlich exfiltriert, um mit Veröffentlichung zu drohen"], 10),
+                (self.form_data.get('net3'), ["Sie verfügen oft nicht über spezialisierte IT-Sicherheitsmaßnahmen"], 10),
+                (self.form_data.get('net4'), ["Nutzung von MFA und Zero-Trust-Architekturen"], 10),
+                (self.form_data.get('net5'), ["Ein Wurm benötigt keine Benutzereingabe und verbreitet sich selbstständig"], 10),
+                (self.form_data.get('net6'), ["WannaCry"], 10),
+                (self.form_data.get('net7'), ["Sie betreiben oft nicht segmentierte Netzwerke ohne Echtzeitüberwachung"], 10),
+                (self.form_data.get('net8'), ["Einsatz von Intrusion Detection Systemen (IDS)"], 10),
+                (self.form_data.get('net9'), ["Er tarnt sich als nützliches oder harmloses Programm"], 10),
+                (self.form_data.get('net10'), ["Antiviren-Software mit Signatur- und Verhaltensanalyse"], 10),
             ]
         elif self.test_type == "soc":
             #für den SchnellCheck
@@ -264,7 +264,7 @@ class CalculateResult:
         
         logger.debug(f'Total points calculated: {pos_answers}')
 
-        if self.test_type == "web":
+        if self.test_type == "web" or "net":
             if pos_answers < 40:   
                 ampelfarbe = "rot"
             elif pos_answers < 80:

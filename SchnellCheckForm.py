@@ -107,49 +107,66 @@ class quizwebanwendungen(FlaskForm):
 
 class quiznetzwerk(FlaskForm): 
      #Frage 1
-     net1 = RadioField('Was beschreibt eine SQL-Injection-Attacke am besten?',
-                         choices=[('net1a', 'Überlastung des Webservers durch massenhafte Anfragen'),
-                                  ('net1b', 'Einschleusen und Ausführen schädlicher SQL-Befehle in ein Web-Formular, um Datenbankinhalte auszulesen oder zu manipulieren.'),
-                                  ('net1c', 'Abfangen von Netzwerkpaketen beim Benutzer.'),
-                                  ('net1d', 'Täuschen des DNS-Systems.'),],
+     net1 = RadioField('Was passiert bei einem Ransomware-Angriff typischerweise?',
+                         choices=[('Dateien werden gelöscht und das System wird neugestartet', 'Dateien werden gelöscht und das System wird neugestartet'),
+                                  ('Dateien werden verschlüsselt und ein Lösegeld wird gefordert', 'Dateien werden verschlüsselt und ein Lösegeld wird gefordert'),
+                                  ('Der Browser wird umgeleitet, um Werbung anzuzeigen', 'Der Browser wird umgeleitet, um Werbung anzuzeigen'),],
                          validators=[DataRequired()])
                          
      #Frage 2
-     net2 = RadioField('Was kann ein Angreifer mit einer erfolgreichen SQL-Injection meist erreichen?',
-                     choices=[('net2a', 'Er kann vertrauliche Daten aus der Datenbank auslesen oder verändern'), ('net2b', 'Er kann den Webserver durch massenhaftes Anfragen lahmlegen.'), ('net2c', 'Er verschickt Werbe-E-Mails an alle Kunden.'), ('net2d', 'Er ersetzt die Webseite durch eine neue.')],
+     net2 = RadioField('Was ist mit „Double Extortion“ in Zusammenhang mit Ransomware gemeint?',
+                     choices=[('Es werden zwei verschiedene Systeme gleichzeitig verschlüsselt', 'Es werden zwei verschiedene Systeme gleichzeitig verschlüsselt'), 
+                              ('Die Angreifer fordern zweimal Geld – zuerst für die Entschlüsselung, dann für technische Hilfe', 'Die Angreifer fordern zweimal Geld – zuerst für die Entschlüsselung, dann für technische Hilfe'), 
+                              ('Daten werden verschlüsselt und zusätzlich exfiltriert, um mit Veröffentlichung zu drohen', 'Daten werden verschlüsselt und zusätzlich exfiltriert, um mit Veröffentlichung zu drohen'), ],
                      validators=[DataRequired()])
      
      #Frage 3
-     net3 = RadioField('Was ist Cross-Site-Scripting (XSS)?',
-                       choices=[('net3a', 'Das Aufspüren von Viren in Skriptdateien.'), ('net3b', 'Ein Angriff, bei dem Angreifer bösartigen Skriptcode in eine ansonsten harmlose Webseite einschleusen, der im Browser anderer Nutzer ausgeführt wird.'), ('net3c', 'Eine Technik, um den Quellcode einer Webseite zu verschlüsseln.'), ('net3d', 'Eine Technik, um den Quellcode einer Webseite zu verschlüsseln.')],
+     net3 = RadioField('Warum sind KMU besonders gefährdet durch Ransomware-Angriffe?',
+                       choices=[('Sie haben in der Regel hochsensible nationale Daten', 'Sie haben in der Regel hochsensible nationale Daten'), 
+                                ('Sie verfügen oft nicht über spezialisierte IT-Sicherheitsmaßnahmen', 'Sie verfügen oft nicht über spezialisierte IT-Sicherheitsmaßnahmen'), 
+                                ('Sie nutzen ausschließlich veraltete Software', 'Sie nutzen ausschließlich veraltete Software'), ],
                        validators=[DataRequired()])
      #Frage 4
-     net4 = RadioField('frage?',
-                          choices=[('net4a', 'Ja'), ('net4b', 'Nein'), ('net4c', 'Nein'), ('net4d', 'Nein')],
+     net4 = RadioField('Welche Schutzmaßnahmen helfen konkret gegen Ransomware?',
+                          choices=[('Nutzung von MFA und Zero-Trust-Architekturen', 'Nutzung von MFA und Zero-Trust-Architekturen'), 
+                                   ('Datenbankzugriffe direkt im Browser erlauben', 'Datenbankzugriffe direkt im Browser erlauben'), 
+                                   ('Keine Backups, um weniger Angriffspunkte zu bieten', 'Keine Backups, um weniger Angriffspunkte zu bieten'),],
                           validators=[DataRequired()])
      #Frage 5
-     net5 = RadioField('Trennen Sie Speisen (7% MwSt.) und Getränke (19% MwSt.) korrekt in Ihrer Buchhaltung?',
-                          choices=[('net5a', 'Ja'), ('net5b', 'Nein'), ('net5c', 'Nein'), ('net5d', 'Nein')],
+     net5 = RadioField('Was unterscheidet einen Wurm von einem klassischen Computervirus?',
+                          choices=[('Ein Wurm benötigt keine Benutzereingabe und verbreitet sich selbstständig', 'Ein Wurm benötigt keine Benutzereingabe und verbreitet sich selbstständig'), 
+                                   ('Ein Wurm funktioniert nur auf mobilen Geräten', 'Ein Wurm funktioniert nur auf mobilen Geräten'), 
+                                   ('Ein Wurm kann nur per E-Mail übertragen werden', 'Ein Wurm kann nur per E-Mail übertragen werden'),],
                           validators=[DataRequired()])
      #Frage 6
-     net6 = RadioField('Erfassen Sie alle Einnahmen aus Barzahlungen, Kartenzahlungen und Lieferdiensten vollständig?',
-                           choices=[('net6a', 'Ja'), ('net6b', 'Nein'), ('net6c', 'Nein'), ('net6d', 'Nein')],
+     net6 = RadioField('Welches dieser historischen Beispiele war eine Kombination aus Wurm und Ransomware?',
+                           choices=[('Morris Worm', 'Morris Worm'), 
+                                    ('Code Red', 'Code Red'), 
+                                    ('WannaCry', 'WannaCry'),],
                            validators=[DataRequired()])
      #Frage 7
-     net7 = RadioField('Reichen Sie Ihre Steuererklärungen immer fristgerecht ein?',
-                                   choices=[('net7a', 'Ja'), ('net7b', 'Nein'), ('net7c', 'Nein'), ('net7d', 'Nein')],
+     net7 = RadioField('Warum sind Unternehmen, insbesondere KMU, besonders gefährdet durch Würmer?',
+                                   choices=[('Sie nutzen nur Linux-basierte Systeme', 'Sie nutzen nur Linux-basierte Systeme'), 
+                                            ('Sie betreiben oft nicht segmentierte Netzwerke ohne Echtzeitüberwachung', 'Sie betreiben oft nicht segmentierte Netzwerke ohne Echtzeitüberwachung'), 
+                                            ('Ihre Netzwerke sind ausschließlich offline', 'Ihre Netzwerke sind ausschließlich offline'),],
                                    validators=[DataRequired()])
      #Frage 8
-     net8 = RadioField('Haben Sie in den letzten 2 Jahren Umsatzsteuer-Nachforderungen erhalten?',
-                                 choices=[('net8a', 'Ja'), ('net8b', 'Nein'), ('net8c', 'Nein'), ('net8d', 'Nein')],
+     net8 = RadioField('Welche Maßnahmen helfen gegen die Ausbreitung von Würmern?',
+                                 choices=[('Nutzung offener Ports zur besseren Verfügbarkeit', 'Nutzung offener Ports zur besseren Verfügbarkeit'), 
+                                          ('Einsatz von Intrusion Detection Systemen (IDS)', 'Einsatz von Intrusion Detection Systemen (IDS)'), 
+                                          ('Verzicht auf Antiviren-Software, um Netzwerkgeschwindigkeit zu erhöhen', 'Verzicht auf Antiviren-Software, um Netzwerkgeschwindigkeit zu erhöhen'),],
                                  validators=[DataRequired()])
      #Frage 9
-     net9 = RadioField('Dokumentieren Sie Trinkgelder gemäß den steuerlichen Vorgaben?',
-                             choices=[('net9a', 'Ja'), ('net9b', 'Nein'), ('net9c', 'Nein'), ('net9d', 'Nein')],
+     net9 = RadioField('Was ist ein typisches Merkmal eines Trojaners?',
+                             choices=[('Er verbreitet sich selbstständig über Netzwerke', 'Er verbreitet sich selbstständig über Netzwerke'), 
+                                      ('Er tarnt sich als nützliches oder harmloses Programm', 'Er tarnt sich als nützliches oder harmloses Programm'), 
+                                      ('Er kann nur über USB-Sticks eingeschleust werden', 'Er kann nur über USB-Sticks eingeschleust werden'),],
                              validators=[DataRequired()])
      #Frage 10
-     net10 = RadioField('Werden Ihre Mitarbeitenden regelmäßig zu steuerlichen Vorgaben geschult (z.B. Kassensicherungsverordnung, Trinkgeldregelung)?',
-                          choices=[('net10a', 'Ja'), ('net10b', 'Nein'), ('net10c', 'Nein'), ('net10d', 'Nein')],
+     net10 = RadioField('Welche Schutzmaßnahmen helfen effektiv gegen Trojaner?',
+                          choices=[('Nutzung von Administratorrechten für alle Anwendungen', 'Nutzung von Administratorrechten für alle Anwendungen'), 
+                                   ('Antiviren-Software mit Signatur- und Verhaltensanalyse', 'Antiviren-Software mit Signatur- und Verhaltensanalyse'), 
+                                   ('Ignorieren von Softwareupdates zur Stabilitätssicherung', 'Ignorieren von Softwareupdates zur Stabilitätssicherung'),],
                           validators=[DataRequired()])
      #Einreichen
      submit = SubmitField('Fertig')
