@@ -6,15 +6,9 @@ Hier siehst du zwei kurze Videos, die dir unsere Plattform in Aktion zeigen.
 
 ### Video 1
 
-<video 
-  src="{{'/assets/videos/Video KMU.mp4' | relative_url }}"  
-  autoplay 
-  loop 
-  muted 
-  playsinline 
-  controls
-  style="max-width: 100%; height: auto;">
-  Ihr Browser unterstützt das "Video-Tag" nicht.
+<video width="640" controls>
+  <source src="assets/videos/Video KMU.mp4" type="video/mp4">
+  Dein Browser unterstützt das Video-Tag nicht.
 </video>
 
 ---
