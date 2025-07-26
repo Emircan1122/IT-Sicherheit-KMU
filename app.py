@@ -77,7 +77,7 @@ def schnelltest():
     test_type = 'schnell'
     session['test_type'] = test_type
     form = SchnellCheckForm()  # ← Neue Formklasse für IT-Sicherheit verwenden
-
+ 
     if form.validate_on_submit():
         session['form_data'] = {field.name: field.data for field in form}
 
@@ -110,7 +110,7 @@ def schnelltest():
     return render_template('schnelltest.html', form=form, test_type = session['test_type'])
 
 @app.route('/quizweb', methods=['GET', 'POST'])
-def quizweb():
+def quizweb(): 
     test_type = 'web'
     session['test_type'] = test_type
     form = quizwebanwendungen()

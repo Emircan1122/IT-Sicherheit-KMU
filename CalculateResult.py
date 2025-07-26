@@ -263,14 +263,15 @@ class CalculateResult:
         )
         
         logger.debug(f'Total points calculated: {pos_answers}')
+        if self.test_type in ["web", "net", "soc", "mal", "bekoid"]:
 
-        if self.test_type == "web" or "net":
-            if pos_answers < 40:   
-                ampelfarbe = "rot"
-            elif pos_answers < 80:
-                ampelfarbe = "gelb"
-            else:
-                ampelfarbe = "grün"
+            if self.test_type == "web" or "net":
+                if pos_answers < 40:   
+                    ampelfarbe = "rot"
+                elif pos_answers < 80:
+                    ampelfarbe = "gelb"
+                else:
+                    ampelfarbe = "grün"
         elif self.test_type == 'schnell':
             if pos_answers >= 60:
                 ampelfarbe = 'A'
@@ -285,40 +286,6 @@ class CalculateResult:
             else:
                 ampelfarbe = 'F'
         
-        else:  # AusführlicherTest
-            if pos_answers < 107:    
-                ampelfarbe = "rot"
-            elif pos_answers <= 119:
-                ampelfarbe = "gelb"
-            else:
-                ampelfarbe = "grün"            
-
         return ampelfarbe, pos_answers
         
         
-
-    def calcResultsAtoF(self):
-            pos_answers = sum(
-                punkte 
-                for wert, gültige_werte, punkte in self.bewertungskriterien 
-                if wert in gültige_werte
-            )
-            
-            logger.debug(f'Total points calculated: {pos_answers}')
-
-            if self.test_type == "Schnell" or "web":
-                if pos_answers < 42:   
-                    ampelfarbe = "rot"
-                elif pos_answers < 52:
-                    ampelfarbe = "gelb"
-                else:
-                    ampelfarbe = "grün"
-            else:  # AusführlicherTest
-                if pos_answers < 107:    
-                    ampelfarbe = "rot"
-                elif pos_answers <= 119:
-                    ampelfarbe = "gelb"
-                else:
-                    ampelfarbe = "grün"
-
-            return ampelfarbe, pos_answers
